@@ -1,4 +1,4 @@
-# **Testivanie na ESP8266 v Micropythone**
+# **Testovanie na ESP8266 v Micropythone**
 
 Short description... Micropython talks with Arduino Robot arm over I2C
 
