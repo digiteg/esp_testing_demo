@@ -75,17 +75,17 @@ Hardware Build
 - Ultimately, the test occurs when an assertion is made, comparing the observed and expected values. For example, let us test  that our mean function successfully calculates the known value for a simple list.
 
 
-**MicroPython assert Keyword**
+*MicroPython **assert** Keyword*
 
-
-    x = "hello Micropython"
+```python
+x = "hello Micropython"
     
-    #if condition returns True, then nothing happens:
-    assert x == "hello Micropython"
+#if condition returns True, then nothing happens:
+assert x == "hello Micropython"
     
-    #if condition returns False, AssertionError is raised:
-    assert x == "bye"
-
+#if condition returns False, AssertionError is raised:
+assert x == "bye"
+```
 
 
 #### Key features
