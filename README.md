@@ -25,7 +25,7 @@ Some summary from my small internet research is bellow and it is about what coul
 - The system complexity & bugs present in the IOT technology
 - Limitations in memory, processing power, bandwidth, battery life, etc.
 
-<br/><br/>
+<br/>
 # Things used in this project
 
 ### **Hardware components**
@@ -52,7 +52,7 @@ Some summary from my small internet research is bellow and it is about what coul
 | :---|:------------------------:|:---| ----:|
 | Img | Raspberry Pi 3 Model B	 | ×1 | link |
 
-<br/><br/>
+<br/>
 
 # Long story short
 
@@ -65,7 +65,26 @@ Hardware Build
 
 
 
-## **Step 1: Getting Started with Braccio robot arm**
+## **Getting Started with first level - Unit Tests are just functions**
+
+
+- Unit tests are typically made of three pieces, some setup, a number of assertions, and some tear-down. 
+
+- Setup can be as simple as initializing the input values or as complex as creating and initializing concrete instances of a class. 
+
+- Ultimately, the test occurs when an assertion is made, comparing the observed and expected values. For example, let us test  that our mean function successfully calculates the known value for a simple list.
+
+
+**MicroPython assert Keyword**
+
+
+    x = "hello Micropython"
+    
+    #if condition returns True, then nothing happens:
+    assert x == "hello Micropython"
+    
+    #if condition returns False, AssertionError is raised:
+    assert x == "bye"
 
 
 
@@ -80,15 +99,7 @@ Hardware Build
 
 **Used I/Os of Arduino**
 
-|I/O of  | Braccio  | | I/O of | Arduino|
-| :------|:--:|:--:| :------| -----:|
-| **M1** | 11 |   | **I1** | A1 (15) |
-| **M2** | 10 |   | **I2** | A2 (16) |
-| **M3** | 9 |   | **I3** | A3 (17) |
-| **M4** | 6 |   | **I4** | A4 (18) |
-| **M5** | 5 |   | **I5** | A5 (19) |
-| **M6** | 3 |   | **I2C (TWI)** | SDA, SCL |
-| **I0** | A0 (14) |   | **SERIAL** | RX0, TX0 |
+
 
 
 #### Installation of arm - video tutorial
@@ -105,3 +116,29 @@ Hardware Build
 # Next steps
 
 # Credits
+
+## UML diagrams
+
+You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
+
+```mermaid
+sequenceDiagram
+Alice ->> Bob: Hello Bob, how are you?
+Bob-->>John: How about you John?
+Bob--x Alice: I am good thanks!
+Bob-x John: I am good thanks!
+Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
+
+Bob-->Alice: Checking with John...
+Alice->John: Yes... John, how are you?
+```
+
+And this will produce a flow chart:
+
+```mermaid
+graph LR
+A[Square Rect] -- Link text --> B((Circle))
+A --> C(Round Rect)
+B --> D{Rhombus}
+C --> D
+```
