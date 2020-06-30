@@ -2,18 +2,22 @@
 Unit Tests Are Just Functions
 Unit tests are typically made of three pieces, some set-up, a number of assertions, and some tear-down. 
 Set-up can be as simple as initializing the input values or as complex as creating and initializing concrete instances of a class. 
-Ultimately, the test occurs when an assertion is made, comparing the observed and expected values. For example, let us test that our mean function successfully calculates the known value for a simple list.
+Execution, the test occurs when an assertion is made, comparing the observed and expected values. 
 """
+
+#Step 3: try/except/finally example
 
 try:
     assert "Hello" == "Hello"
     assert 3 == 2, "Failed"
-    print("Test : pass")
+    print("Test try/except/finally : pass")
 
 except AssertionError as err:
-    print("Test Assertion error: {0}".format(err))
+    print("Test try/except/finally Assertion error: {0}".format(err))
 except:
     print("An unexpected exception occurred")
+finally:
+    print("Teardown try/except/finally...")
 
 # Array ------------------------------
 
