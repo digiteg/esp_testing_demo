@@ -1,7 +1,7 @@
 # **ESP8266 Simple Testing with examples in Micropython**
 
 
-![Testing Phase](\\img\\introtesting.png)
+![Testing Phase](/img/introtesting.png)
 
 Short description... Micropython talks with Arduino Robot arm over I2C
 
