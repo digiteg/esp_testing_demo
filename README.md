@@ -25,7 +25,7 @@ Some summary from my small internet research is bellow and it is about what coul
 - The system complexity & bugs present in the IOT technology
 - Limitations in memory, processing power, bandwidth, battery life, etc.
 
-
+<br/><br/>
 # Things used in this project
 
 ### **Hardware components**
@@ -52,7 +52,7 @@ Some summary from my small internet research is bellow and it is about what coul
 | :---|:------------------------:|:---| ----:|
 | Img | Raspberry Pi 3 Model B	 | ×1 | link |
 
-
+<br/><br/>
 
 # Long story short
 
