@@ -1,12 +1,17 @@
 # **ESP8266 Simple Testing with examples in Micropython**
 
+I was digging on internet for some examples about testing on ESP8266 in Micropython just for myself education purpose and I didn't find too much useful examples for me. So I decided to fill this gap and I hope this can be  also useful for others who are willing to deal with the topic or teach their students about basics and how to automate testing. Why ESP8266 ? Because it is cost-effective and highly integrated Wi-Fi MCU for IoT / smart things... applications
+
 
 ![Testing Phase](/img/introtesting.png)
 
-Short description... Micropython talks with Arduino Robot arm over I2C
+## **Back to Testing..**
 
+You can find lot of great articles about this topic explaining why it is worth spend so much time with Testing or why TDD make sense and so on. Usually my first and simple answer why is ist just because we want to suppress future costs of fixing bugs in production. Real nightmare of each developer doing coding for living should be spending hours of life time in finding bugs in code done by someone else running production with help of neurotic manager who is keeping him or her in pace..  
+ 
+Some summary from my small internet research is bellow and it is about what could be considered and make sense in our case if we develop IoT application with ESP8266 and Micropython
 
-### Best practices for effective IOT TESTING
+### **Best practices for effective IoT Testing**
 
 - Gray Box testing as it allows to design effective test case
 - Gray Box allows you to know the OS, the architecture, third-party hardware, new connectivity and hardware device limitation.
@@ -14,7 +19,7 @@ Short description... Micropython talks with Arduino Robot arm over I2C
 - IoT Testing should be automated
 
 
-### Challenges of IOT testing
+### **Challenges of IOT Testing**
 - Network and internal communication
 - Security
 - The system complexity & bugs present in the IOT technology
@@ -49,11 +54,15 @@ Short description... Micropython talks with Arduino Robot arm over I2C
 
 
 
-# Story
+# Long story short
 
 Why Did We Build This?
 Idea 💡
 Hardware Build
+
+
+![Types of Testing ](/img/typestesting.png)
+
 
 
 ## **Step 1: Getting Started with Braccio robot arm**
