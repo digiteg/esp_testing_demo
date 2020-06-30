@@ -1,6 +1,24 @@
-# **Testovanie na ESP8266 v Micropythone**
+# **ESP8266 Simple Testing with examples in Micropython**
+
+
+![Testing Phase](/img/itrotesting.png)
 
 Short description... Micropython talks with Arduino Robot arm over I2C
+
+
+### Best practices for effective IOT TESTING
+
+- Gray Box testing as it allows to design effective test case
+- Gray Box allows you to know the OS, the architecture, third-party hardware, new connectivity and hardware device limitation.
+- Real Time Operating System
+- IoT Testing should be automated
+
+
+### Challenges of IOT testing
+- Network and internal communication
+- Security
+- The system complexity & bugs present in the IOT technology
+- Limitations in memory, processing power, bandwidth, battery life, etc.
 
 
 # Things used in this project
