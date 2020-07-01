@@ -15,7 +15,7 @@ I was digging on internet for some examples about testing on ESP8266 in Micropyt
  ![NodeMCU ESP8266](/img/ESP8266.jpg)
 
 ### **Hardware components**
-- NodeMCU ESP8266
+- Waveshare NodeMCU-32S ESP32 WiFi + Bluetooth
 
 ### **Software apps and online services**
 - [Thony](https://thonny.org/)
