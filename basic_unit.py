@@ -30,37 +30,37 @@ print("Array Test : pass")
 
 # ------------------------------
 
-thistuple1 = ("apple", "banana", "cherry")
-thistuple2 = ("apple", "banana", "cherry")
+test_tuple1 = ("apple", "banana", "cherry")
+test_tuple2 = ("apple", "banana", "cherry")
 
-assert thistuple1 == thistuple2
+assert test_tuple1 == test_tuple2
 print("Tuple Test : pass")
 
 # ------------------------------
 
 
-thisset1 = {"apple", "banana", "cherry"}
-thisset2 = {"apple", "banana", "cherry"}
+test_set1 = {"apple", "banana", "cherry"}
+test_set2 = {"apple", "banana", "cherry"}
 
-assert thisset1 == thisset2
+assert test_set1 == test_set2
 print("Set test: pass")
 
 
 # ------------------------------
 
-thisdict1 = {
+test_dict1 = {
     "brand": "Ford",
     "model": "Mustang",
     "year": 1964
 }
 
-thisdict2 = {
+test_dict2 = {
     "brand": "Ford",
     "model": "Mustang",
     "year": 1964
 }
 
-assert thisdict1 == thisdict2
+assert test_dict1 == test_dict2
 print("Dictionary test: pass")
 
 # --------------------------------------------------------------------------------------------

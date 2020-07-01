@@ -101,7 +101,7 @@ x = "hello Micropython"
 
 assert x == "bye", "x should be 'hello Micropython'"
 ```
-### Step 3: Handle exceptions with  _**try**_ / _**except**_ / _**finally**_ block
+### Step 3: Handle *AssertionError* exceptions with  _**try**_ / _**except**_ / _**finally**_ block
 
 In example the try block raises an *AssertionError* and the except block will be executed. Without the try block, program will crash and raise an error
 
@@ -137,10 +137,10 @@ print("Array test : pass")
 ```python
 # Tuple Test:
 
-thistuple1 = ("apple", "banana", "cherry")
-thistuple2 = ("apple", "banana", "cherry")
+test_tuple1 = ("apple", "banana", "cherry")
+test_tuple2 = ("apple", "banana", "cherry")
 
-assert thistuple1 == thistuple2
+assert test_tuple1 == test_tuple2
 print("Tuple test : pass")
 ```
 ### Step 6:
@@ -148,10 +148,10 @@ print("Tuple test : pass")
 ```python
 # Set test
 
-thisset1 = {"apple", "banana", "cherry"}
-thisset2 = {"apple", "banana", "cherry"}
+test_set1 = {"apple", "banana", "cherry"}
+test_set2 = {"apple", "banana", "cherry"}
 
-assert thisset1 == thisset2
+assert test_set1 == test_set2
 print("Set test: pass")
 ```
 ### Step 7:
@@ -159,27 +159,30 @@ print("Set test: pass")
 ```python
 # Dictionary test:
 
-thisdict1 = {
+test_dict1 = {
     "brand": "Ford",
     "model": "Mustang",
     "year": 1964
 }
 
-thisdict2 = {
+test_dict2 = {
     "brand": "Ford",
     "model": "Mustang",
     "year": 1964
 }
 
-assert thisdict1 == thisdict2
+assert test_dict1 == test_dict2
 print("Dictionary test: pass")
 ```
 
-## **Getting Started with first level - Unit Tests are just functions**
+
+
+# Testing Techniques 
+
+## 1. Equivalence Partitioning
+![Equivalence Partitioning](/img/testtecheqp.png)
 
 ```python
-# --------------------------------------------------------------------------------------------
-
 # Equivalence Partitioning
 
 age = 18  # entered age
@@ -202,8 +205,9 @@ assert age >= 18 and age <= 60, "Equivalence Partitioning test Fail: <=17 Invali
 print("Equivalence Partitioning test: pass")
 ```
 
+## 2. Boundary Value Analysis
+![Boundary Value Analysis](/img/testtechbva.png)
 ```python
-# --------------------------------------------------------------------------------------------
 # Boundary Value Analysis
 
 
@@ -238,9 +242,11 @@ def testBVA():
 
 testBVA()
 ```
+## 3. Decision Table Testing
+
+![Decision Table Testing](/img/testtechdtt.png)
 
 ```python
-# --------------------------------------------------------------------------------------------
 # Decision Table Testing
 
 
@@ -294,11 +300,34 @@ def testDTT():
 
 testDTT()
 ```
+## 4. State Transition Testing
+![State Transition Testing](/img/testtechstt.png)
+
+## 5. Error Guessing
+Tester knows common mistakes that developers usually forget to handle:
+- Divide by zero.
+- Handling null values in text fields.
+- Accepting the Submit button without any value.
+- File upload without attachment.
+- File upload with less than or more than the limit size.
+
+## 6. Graph-Based Testing Methods
+- Each and every application is a build-up of some objects. 
+- All such objects are identified and the graph is prepared. 
+- From this object graph, each object relationship is identified and test cases are written accordingly to discover the errors.
+
+## 7. Comparison Testing
+- Different independent versions of the same software are used to compare to each other for testing in this method.
+
+
+
+# Lets try few Testing Techniques 
+- Boundary Values
+- Error Guessing
+
 
 ```python
-# --------------------------------------------------------------------------------------------
 # Fibonacci
-
 
 def fib(n):
     
@@ -329,7 +358,7 @@ except AssertionError as err:
 #    print("Fibonacci test Fail:An unexpected exception occurred")
 ```
 
-
+# Test Driven Development
 
 #### Key features
 
@@ -359,29 +388,3 @@ except AssertionError as err:
 # Next steps
 
 # Credits
-
-## UML diagrams
-
-You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
-
-```mermaid
-sequenceDiagram
-Alice ->> Bob: Hello Bob, how are you?
-Bob-->>John: How about you John?
-Bob--x Alice: I am good thanks!
-Bob-x John: I am good thanks!
-Note right of John: Bob thinks a long<br/>long time, so long<br/>that the text does<br/>not fit on a row.
-
-Bob-->Alice: Checking with John...
-Alice->John: Yes... John, how are you?
-```
-
-And this will produce a flow chart:
-
-```mermaid
-graph LR
-A[Square Rect] -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
-```
