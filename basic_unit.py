@@ -178,34 +178,43 @@ testDTT()
 
 
 # --------------------------------------------------------------------------------------------
-# Fibonacci
+# Fibonacci example
+#
+# Lets try to apply few testing techniques which we learned on fibonacci function example
+# - Boundary Values
+# - Error Guessing
 
 # returns fibonacci number
 def fib(n):
-    
+
+# To fix Error Guessing tests uncomment this lines
 #    if n is None or type(n) is str or n < 0:
 #        return 0
     
     if n == 0 or n == 1:
         return n
     else:
-        return fib(n - 1) + fib(n - 2) # recursive call 
+        return fib(n - 1) + fib(n - 2)
 
-
+# --------- Unit tests 
 try:
+  
+    #  Boundary Values technique
     assert fib(0) == 0  # test edge 0
     assert fib(1) == 1   # test edge 1
     assert fib(8) == 21  # test internal point expected 21
 
+    #  Error Guessing technique
     assert fib(-1) == 0, "invalid value -1"  # test invalid value
     assert fib(None) == 0, "invalid value None"  # test null value
     assert fib('a') == 0, "invalid value 'a'"  # test wrong value type
-
 
     print("Fibonacci test: pass")
 
 except AssertionError as err:
     print("Fibonacci test Fail: {0}".format(err))
+
+# to cover all exceptions uncomment below lines
 #except:
 #    print("Fibonacci test Fail:An unexpected exception occurred")
 

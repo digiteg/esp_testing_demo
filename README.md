@@ -81,19 +81,20 @@ Black-box testing, a tester doesn't have any information about the internal work
 Functional testing is a type of testing which verifies that each function of an application operates in conformance with the requirement specification. They only verify the output of an action and do not check the intermediate states of the system when performing that action.
 
 #### Unit tests
-Unit tests are very low level. They consist in testing individual methods of the classes and functions and are in general quite cheap to automate and can be run very quickly in continuous integration scenarios.
+Unit tests are very low level. They consist in testing individual methods of the classes and functions and are in general quite cheap to automate and can be run very quickly in continuous integration scenarios.This is done by developer usually.
 
 #### Integration tests
-Integration tests verify that different modules or services used in your application work well together. 
+Integration testing is a bottom-up approach for testing when new functionality is added new test are created. Application functionality and modules should be independent enough to be tested separately. This is done by developer usually or by tester.
+
 
 #### Non-Functional tests
 Non-functional testing is a type of testing to check non-functional aspects (compatibility, performance, usability,  etc.) of an application. It is explicitly designed to test the readiness of a system as per nonfunctional parameters which are never addressed by functional testing.
 
 <br/>
 
-# Getting Started with first level - Unit Tests are just functions
+# Let's start with first level
 
-
+Unit Tests are just functions ...
 - **Unit tests** are typically made of three pieces, some **setup**, a number of **assertions**, and some **tear-down**. 
 
 - **Setup** can be as simple as initializing the input values or as complex as creating and initializing concrete instances of a class. 
@@ -102,7 +103,7 @@ Non-functional testing is a type of testing to check non-functional aspects (com
 
 Try to copy and paste following code examples into REPL
 
-### Step 1: MicroPython hello _**assert**_ Keyword
+## Step 1: MicroPython hello _**assert**_ Keyword
 
 The assert keyword is usually used when we debugging or and lets you test if a condition in your code returns *True*, if not, the program will raise an *AssertionError*.
 You can also add a message to be written if the code returns False, check the examples below.
@@ -116,7 +117,7 @@ assert x == "hello Micropython"
 #if condition returns False, AssertionError is raised:
 assert x == "bye"
 ```
-### Step 2:  Add message
+## Step 2:  Add message
 
 Write a message if the condition is False
 
@@ -127,7 +128,7 @@ x = "hello Micropython"
 
 assert x == "bye", "x should be 'hello Micropython'"
 ```
-### Step 3: Handle *AssertionError* exceptions with  _**try**_ / _**except**_ / _**finally**_ block
+## Step 3: Handle *AssertionError* exceptions with  _**try**_ / _**except**_ / _**finally**_ block
 
 In example the try block raises an *AssertionError* and the except block will be executed. Without the try block, program will crash and raise an error
 
@@ -147,7 +148,7 @@ finally:
     print("Teardown try/except/finally...")
 ```
 
-### Step 4:
+## Step 4: *Array* example
 
 ```python
 # Array Test:
@@ -158,7 +159,7 @@ test_list2 = [1, 2, 4, 3, 5]
 assert test_list1 == test_list2
 print("Array test : pass")
 ```
-### Step 5:
+## Step 5: *Tuple* example
 
 ```python
 # Tuple Test:
@@ -169,7 +170,7 @@ test_tuple2 = ("apple", "banana", "cherry")
 assert test_tuple1 == test_tuple2
 print("Tuple test : pass")
 ```
-### Step 6:
+## Step 6: *Set* example
 
 ```python
 # Set test
@@ -180,7 +181,7 @@ test_set2 = {"apple", "banana", "cherry"}
 assert test_set1 == test_set2
 print("Set test: pass")
 ```
-### Step 7:
+## Step 7: *Dictionary* example
 
 ```python
 # Dictionary test:
@@ -204,8 +205,12 @@ print("Dictionary test: pass")
 <br/>
 
 # Testing Techniques 
+Idea of Testing Techniques is to help you to design better test cases. In this part of tutorial you will learn about 7  testing techniques.
 
 ## 1. Equivalence Partitioning
+
+The aim of this testing is to remove redundant test cases within a specific group which generates the same output but not any defect. The concept itself is that we consider test a representative value of each class equal to a test of any other value of the same class. It allows you to identify valid as well as invalid equivalence classes.
+
 ![Equivalence Partitioning](/img/testtecheqp.png)
 
 
@@ -233,6 +238,10 @@ print("Equivalence Partitioning test: pass")
 ```
 
 ## 2. Boundary Value Analysis
+
+This type of testing checks the behavior of the application at the boundary level. It includes maximum, minimum, inside or outside boundaries, typical values and error values.
+
+
 ![Boundary Value Analysis](/img/testtechbva.png)
 
 
@@ -276,7 +285,7 @@ testBVA()
 
 ## 3. Decision Table Testing
 
-Following example covers 3 clearly distinguished printer issues with how to fix them actions translated into **Decision table**
+A decision table is also known as to Cause-Effect table. This testing technique is used for functions which respond to a combination of inputs or events. Following example covers 3 clearly distinguished printer issues with how to fix them actions translated into **Decision table**
 
 ### **Printer issues - Decision Table / Cause-Effect**
 |Conditions|Rule 1|Rule 2|Rule 3|Rule 4|Rule 5|Rule 6| Rule 7|
@@ -291,6 +300,9 @@ Following example covers 3 clearly distinguished printer issues with how to fix 
 | Check/replace ink | | x |x | |x ||x|
 | Check for paper jam | | | | | x |x|
 
+<br/>
+
+Decision Table translated into MicroPython with test
 
 ```python
 # Decision Table translated into MicroPython with test
@@ -353,6 +365,13 @@ testDTT()
 ## 4. State Transition Testing
 ![State Transition Testing](/img/testtechstt.png)
 
+Technique changes in input conditions which change the state of the Application Under Test (AUT). This allows the tester to test the behavior of an AUT. The tester can perform this action by entering various input conditions in a sequence. You should provide positive as well as negative input test values for evaluating the system behavior.
+
+Guidelines:
+
+- State transition should be used when you are testing the application for a limited set of input values.
+- and you wants to test sequence of events which happen in an AUT.
+
 ## 5. Error Guessing
 Tester knows common mistakes that developers usually forget to handle:
 - Divide by zero.
@@ -361,15 +380,22 @@ Tester knows common mistakes that developers usually forget to handle:
 - File upload without attachment.
 - File upload with less than or more than the limit size.
 
+So you can writes such tests to expose those common errors.
+
 ## 6. Graph-Based Testing Methods
+
+Graph-based testing builds first a graph model for the AUT, and then tries to cover certain elements in the graph model
+
+Rationale behind technique:
 - Each and every application is a build-up of some objects. 
 - All such objects are identified and the graph is prepared. 
 - From this object graph, each object relationship is identified and test cases are written accordingly to discover the errors.
 
 ## 7. Comparison Testing
-- Different independent versions of the same software are used to compare to each other for testing in this method.
 
+Different independent versions of the same software are used to compare to each other for testing in this method. For example testing comprises of comparing the contents of files, databases, against actual results.
 
+<br/>
 
 # Application of Testing Techniques 
 
@@ -386,14 +412,15 @@ def fib(n):
 
 ![State Transition Testing](/img/fib.jpg)
 
-Lets try few testing techniques applied on fibonacci function example
+Lets try to apply few testing techniques which we learned on fibonacci function example
 - Boundary Values
 - Error Guessing
 ```python
 # Fibonacci
 
 def fib(n):
-    
+
+# To fix Error Guessing tests uncomment this lines
 #    if n is None or type(n) is str or n < 0:
 #        return 0
     
@@ -404,19 +431,25 @@ def fib(n):
 
 
 try:
+    
+    #  Boundary Values technique
+
     assert fib(0) == 0  # test edge 0
     assert fib(1) == 1   # test edge 1
     assert fib(8) == 21  # test internal point expected 21
+
+    #  Error Guessing technique
 
     assert fib(-1) == 0, "invalid value -1"  # test invalid value
     assert fib(None) == 0, "invalid value None"  # test null value
     assert fib('a') == 0, "invalid value 'a'"  # test wrong value type
 
-
     print("Fibonacci test: pass")
 
 except AssertionError as err:
     print("Fibonacci test Fail: {0}".format(err))
+
+# to cover all exceptions uncomment below lines
 #except:
 #    print("Fibonacci test Fail:An unexpected exception occurred")
 ```
