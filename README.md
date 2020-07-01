@@ -15,24 +15,10 @@ I was digging on internet for some examples about testing on ESP8266 in Micropyt
  ![NodeMCU ESP8266](/img/ESP8266.jpg)
 
 ### **Hardware components**
-
-||Name|Qt||
-| :---|:------------------------:|:---| ----:|
-| Img | Raspberry Pi 3 Model B	 | ×1 | link |
-| Img | Raspberry Pi 3 Model B	 | ×1 | link |
-| Img | Raspberry Pi 3 Model B	 | ×1 | link |
-| Img | Raspberry Pi 3 Model B	 | ×1 | link |
-| Img | Raspberry Pi 3 Model B	 | ×1 | link |
+- NodeMCU ESP8266
 
 ### **Software apps and online services**
-||Name|Qt||
-| :---|:------------------------:|:---| ----:|
-| Img | Raspberry Pi 3 Model B	 | ×1 | link |
-
-### **Hand tools and fabrication machines**
-||Name|Qt||
-| :---|:------------------------:|:---| ----:|
-| Img | Raspberry Pi 3 Model B	 | ×1 | link |
+- Thony
 
 <br/>
 
