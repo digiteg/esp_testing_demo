@@ -1,13 +1,11 @@
-from math import sqrt
-
 """"
 The following example illustrates classic TDD for a standard deviation function, std().
 To start, we write a test for computing the standard deviation from a list of numbers as follows
 """
 
+from math import sqrt
 
-# (4) -----------------
-
+#standard deviation function, std()
 def std(nums):
 
    if len(nums) == 0: # Special case the empty list.
@@ -22,7 +20,8 @@ def std(nums):
    
    return sqrt(variance/len(nums))
 
-# (4) -----------
+# TDD Tests -----------
+
 def test_std1():
     obs = std([0.0, 2.0])
     exp = 1.0
@@ -56,13 +55,15 @@ def test_std5():
     assert obs == exp
 
 
-# (4) -----------------
+# Run tests -----------------
 
+# demo run of calculation
 val= [12.5, 7.0, 10.0, 7.8, 15.5]
 print (std(val))
 
-test_std1()
-test_std2()
-test_std3()
-test_std4()
-test_std5()
+# exec tests 1,2,3,4,5
+test_std1() # expected 1.0
+test_std2() # empty list test expected 0
+test_std3() # Test a real case expected 2.0
+test_std4() # value is not zero. expected 1.0
+test_std5() # two same values expected 0
