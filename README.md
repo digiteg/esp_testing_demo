@@ -247,8 +247,9 @@ testBVA()
 ```
 ## 3. Decision Table Testing
 
-![Decision Table Testing](/img/testtechdtt.png)
 
+
+### **Printer issues - Decision Table / Cause-Effect**
 |Conditions|Rule 1|Rule 2|Rule 3|Rule 4|Rule 5|Rule 6| Rule 7|
 | :----------------|---:|---:| ----:| ----:| ----:|----:|----:|
 | Printer does not print | True	 | True | False | False | True | True | False
