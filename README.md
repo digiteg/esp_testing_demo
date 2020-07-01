@@ -18,7 +18,8 @@ I was digging on internet for some examples about testing on ESP8266 in Micropyt
 - NodeMCU ESP8266
 
 ### **Software apps and online services**
-- Thony
+- [Thony](https://thonny.org/)
+- [MicroPython unicorn online editor](https://micropython.org/unicorn/)
 
 <br/>
 
@@ -545,7 +546,7 @@ test_std2() # empty list test expected 0
 test_std3() # Test a real case expected 2.0
 ```
 
-### Step 6: Final implementation of standard deviation function, *std()*
+## Step 6: Final implementation of standard deviation function, *std()*
 
 ```python
 from math import sqrt
@@ -663,6 +664,7 @@ In second part of this tutorial I will cover more complex testing examples and u
 Further reading and useful links:
 - [Guru99](https://www.guru99.com/software-testing.html)
 - [Software Testing Help](https://www.softwaretestinghelp.com/)
+- [W3Schools Python Tutorial](https://www.w3schools.com/python/default.asp)
 - [wikipedia Fibonacci](https://en.wikipedia.org/wiki/Fibonacci_number)
 - [wikipedia Standard deviation](https://en.wikipedia.org/wiki/Standard_deviation)
 
