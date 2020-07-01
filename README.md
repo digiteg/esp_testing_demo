@@ -3,34 +3,15 @@
 I was digging on internet for some examples about testing on ESP8266 in Micropython just for myself education purpose and I didn't find too much useful examples for me. So I decided to fill this gap and I hope this can be  also useful for others who are willing to deal with the topic or teach their students about basics and how to automate testing. Why ESP8266 ? Because it is cost-effective and highly integrated Wi-Fi MCU for IoT / smart things... applications
 
 
-![Testing Phase](/img/introtesting.png)
 
-## **Back to Testing..**
-
-You can find lot of great articles about this topic explaining why it is worth spend so much time with Testing or why TDD make sense and so on. Usually my first and simple answer why is ist just because we want to suppress future costs of fixing bugs in production. Real nightmare of each developer doing coding for living should be spending hours of life time in finding bugs in code done by someone else running production with help of neurotic manager who is keeping him or her in pace..  
- 
-Some summary from my small internet research is bellow and it is about what could be considered and make sense in our case if we develop IoT application with ESP8266 and Micropython
-
-### **Best practices for effective IoT Testing**
-
-- Gray Box testing as it allows to design effective test case
-- Gray Box allows you to know the OS, the architecture, third-party hardware, new connectivity and hardware device limitation.
-- Real Time Operating System
-- IoT Testing should be automated
-
-
-### **Challenges of IOT Testing**
-- Network and internal communication
-- Security
-- The system complexity & bugs present in the IOT technology
-- Limitations in memory, processing power, bandwidth, battery life, etc.
 
 <br/>
+
 # Things used in this project
 
-### **Hardware components**
 
- Things used in this project
+
+
  ![NodeMCU ESP8266](/img/ESP8266.jpg)
 
 ### **Hardware components**
@@ -57,16 +38,60 @@ Some summary from my small internet research is bellow and it is about what coul
 
 # Long story short
 
-Why Did We Build This?
-Idea 💡
-Hardware Build
+![Testing Phase](/img/introtesting.png)
 
+## **Back to Testing..**
+
+You can find lot of great articles about this topic explaining why it is worth spend so much time with Testing or why TDD make sense and so on. Usually my first and simple answer why is ist just because we want to suppress future costs of fixing bugs in production. Real nightmare of each developer doing coding for living should be spending hours of life time in finding bugs in code done by someone else running production with help of neurotic manager who is keeping him or her in pace..  
+ 
+Some summary from my small internet research is bellow and it is about what could be considered and make sense in our case if we develop IoT application with ESP8266 and Micropython
+
+### **Best practices for effective IoT Testing**
+
+- Gray Box testing as it allows to design effective test case
+- Gray Box allows you to know the OS, the architecture, third-party hardware, new connectivity and hardware device limitation.
+- Real Time Operating System
+- IoT Testing should be automated
+
+
+### **Challenges of IOT Testing**
+- Network and internal communication
+- Security
+- The system complexity & bugs present in the IOT technology
+- Limitations in memory, processing power, bandwidth, battery life, etc.
+
+<br/>
+
+# PRINCIPLES OF TESTING
+
+There are many different types of testing that you can use to make sure that changes to your code are working as expected.
+At a high level, Manual testing is done in person, for example by pushing buttons observing LEDs or interacting with APIs etc. Automated tests, are performed by a machine that executes a test script that has been written for our case in MicroPython.
 
 ![Types of Testing](/img/typestesting.png)
 
+#### White Box testing
+White-box testing is a testing technique which checks the internal functioning of the system. The white-box Testing method assumes that the Tester knows the code logic in a unit or program etc.
+
+#### Black Box testing
+Black-box testing, a tester doesn't have any information about the internal working of an application. Black box testing is a high level of testing that focuses on the behavior and involves testing from an external or end-user perspective. Black box testing can be applied to virtually every level of software testing: unit, integration, system, and acceptance...
 
 
-## **Getting Started with first level - Unit Tests are just functions**
+
+#### Functional tests
+Functional testing is a type of testing which verifies that each function of an application operates in conformance with the requirement specification. They only verify the output of an action and do not check the intermediate states of the system when performing that action.
+
+#### Unit tests
+Unit tests are very low level. They consist in testing individual methods of the classes and functions and are in general quite cheap to automate and can be run very quickly in continuous integration scenarios.
+
+#### Integration tests
+Integration tests verify that different modules or services used in your application work well together. 
+
+#### Non-Functional tests
+Non-functional testing is a type of testing to check non-functional aspects (compatibility, performance, usability,  etc.) of an application. It is explicitly designed to test the readiness of a system as per nonfunctional parameters which are never addressed by functional testing.
+
+<br/>
+
+# Getting Started with first level - Unit Tests are just functions
 
 
 - **Unit tests** are typically made of three pieces, some **setup**, a number of **assertions**, and some **tear-down**. 
@@ -176,7 +201,7 @@ assert test_dict1 == test_dict2
 print("Dictionary test: pass")
 ```
 
-
+<br/>
 
 # Testing Techniques 
 
@@ -246,6 +271,9 @@ def testBVA():
 
 testBVA()
 ```
+
+<br/>
+
 ## 3. Decision Table Testing
 
 Following example covers 3 clearly distinguished printer issues with how to fix them actions translated into **Decision table**
@@ -320,6 +348,8 @@ def testDTT():
 
 testDTT()
 ```
+<br/>
+
 ## 4. State Transition Testing
 ![State Transition Testing](/img/testtechstt.png)
 
@@ -390,6 +420,7 @@ except AssertionError as err:
 #except:
 #    print("Fibonacci test Fail:An unexpected exception occurred")
 ```
+<br/>
 
 # Test Driven Development
 
@@ -534,6 +565,7 @@ test_std4()
 test_std5()
 ```
 
+<br/>
 
 # Integration Test - Example
 
@@ -571,6 +603,7 @@ def test_c():  # integration test
 
 test_c()
 ```
+<br/>
 
 # Next steps
 
