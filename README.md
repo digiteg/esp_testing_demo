@@ -247,7 +247,7 @@ testBVA()
 ```
 ## 3. Decision Table Testing
 
-
+Following example covers 3 clearly distinguished printer issues with how to fix them actions translated into **Decision table**
 
 ### **Printer issues - Decision Table / Cause-Effect**
 |Conditions|Rule 1|Rule 2|Rule 3|Rule 4|Rule 5|Rule 6| Rule 7|
@@ -264,20 +264,20 @@ testBVA()
 
 
 ```python
-# Decision Table Testing
+# Decision Table translated into MicroPython with test
 
-
-
+# Conditions for printer issue description
 conditions = ["Printer does not print", "A red light is flashing",
               "Printer is unrecognized"]  # That was 3 conditions
 
+# Actions
 Power_Cable = "Check the power cable"
 Printer_Computer_Cable = "Check the printer-computer cable"
 Software_Installed = "Ensure printer software is installed"
 New_Ink = "Check/replace ink"
 Paper_Jam = "Check for paper jam"
 
-
+# Rule Set building 
 rules = [((True,  False, True),  Power_Cable),
          ((True,  True,  True),  Printer_Computer_Cable),
          ((True,  False, True),  Printer_Computer_Cable),
@@ -293,6 +293,7 @@ rules = [((True,  False, True),  Power_Cable),
          ((True,  False, False), Paper_Jam)
          ]
 
+# Exec rules evaluation
 def evalRule(tupl, table):
     answ = []
     for key, val in table:
@@ -300,6 +301,7 @@ def evalRule(tupl, table):
             answ.append(val)
     return answ
 
+# test DTT
 def testDTT():
     
     testcond = (False,  True, True)
