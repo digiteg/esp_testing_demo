@@ -31,6 +31,7 @@ Some summary from my small internet research is bellow and it is about what coul
 ### **Hardware components**
 
  Things used in this project
+ ![NodeMCU ESP8266](/img/ESP8266.jpg)
 
 ### **Hardware components**
 
@@ -61,7 +62,7 @@ Idea 💡
 Hardware Build
 
 
-![Types of Testing ](/img/typestesting.png)
+![Types of Testing](/img/typestesting.png)
 
 
 
@@ -392,31 +393,195 @@ except AssertionError as err:
 
 # Test Driven Development
 
-#### Key features
+### Step 1:
+### Step 2:
+### Step 3:
+
+```python
+""""
+The following example illustrates classic TDD for a standard deviation function, std().
+To start, we write a test for computing the standard deviation from a list of numbers as follows
+"""
+
+
+# (1) -----------
+
+def test_std1():
+    obs = std([0.0, 2.0])
+    exp = 1.0
+    assert obs == exp
+
+
+# (2) ------------------
 
 
 
-#### Control - Arduino Shield
+def std(vals):
+    # surely this is cheating...
+    return 1.0
+
+
+# (3) -----------------
+
+def std(vals):
+    # a little better
+    if len(vals) == 0: # Special case the empty list.
+        return 0.0
+    return vals[-1] / 2.0 # By being clever, we can get away without doing real work.
 
 
 
 
-**Used I/Os of Arduino**
+# (3) -----------
+def test_std1():
+    obs = std([0.0, 2.0])
+    exp = 1.0
+    assert obs == exp
 
 
+def test_std2():
+    # Test the fiducial case when we pass in an empty list.
+    obs = std([])
+    exp = 0.0
+    assert obs == exp
 
 
-#### Installation of arm - video tutorial
+def test_std3():
+    # Test a real case where the answer is not one.
+    obs = std([0.0, 4.0])
+    exp = 2.0
+    assert obs == exp
+
+# (1) -----------------
+test_std1()
+
+# (3) -----------------
+test_std1()
+test_std2()
+test_std3()
+```
+
+### Step 4:
+
+```python
+from math import sqrt
+
+""""
+The following example illustrates classic TDD for a standard deviation function, std().
+To start, we write a test for computing the standard deviation from a list of numbers as follows
+"""
 
 
-## **Step 2: ..**
-## **Step 3: ..**
-## **Step 4: Testing the Model**
+# (4) -----------------
 
-# Schematics
+def std(nums):
 
-# Code
+   if len(nums) == 0: # Special case the empty list.
+      return 0.0
+
+   variance = 0.0
+   
+   mean =sum(nums, 0.0) / len(nums)
+
+   for n in nums:
+      variance += pow(n - mean, 2)
+   
+   return sqrt(variance/len(nums))
+
+# (4) -----------
+def test_std1():
+    obs = std([0.0, 2.0])
+    exp = 1.0
+    assert obs == exp
+
+
+def test_std2():
+    # Test the fiducial case when we pass in an empty list.
+    obs = std([])
+    exp = 0.0
+    assert obs == exp
+
+
+def test_std3():
+    # Test a real case where the answer is not one.
+    obs = std([0.0, 4.0])
+    exp = 2.0
+    assert obs == exp
+
+
+def test_std4():
+    # The first value is not zero.
+    obs = std([1.0, 3.0])
+    exp = 1.0
+    assert obs == exp
+
+def test_std5():
+    # Here, we have more than two values, but all of the values are the same.
+    obs = std([1.0, 1.0, 1.0])
+    exp = 0.0
+    assert obs == exp
+
+
+# (4) -----------------
+
+val= [12.5, 7.0, 10.0, 7.8, 15.5]
+print (std(val))
+
+test_std1()
+test_std2()
+test_std3()
+test_std4()
+test_std5()
+```
+
+
+# Integration Test - Example
+
+```python
+"""
+Integration tests are the class of tests that verify that multiple moving pieces and gears inside the clock work well together. 
+Where unit tests investigate the gears, integration tests look at the position of the hands to determine if the clock can tell time correctly. 
+They look at the system as a whole or at its subsystems. Integration tests typically function at a higher level conceptually than unit tests. 
+Thus, writing integration tests also happens at a higher level.
+"""
+
+
+def a(x):
+    return x + 1
+
+
+def b(x):
+    return 2 * x
+
+
+def c(x):
+    return b(a(x))
+
+
+assert a(1) == 2
+assert b(2) == 4
+assert c(2) == 6
+
+
+def test_c():  # integration test
+    exp = 6
+    obs = c(2)
+    assert obs == exp , "Integration test: Fail"
+    print("Integration test: pass")
+
+test_c()
+```
 
 # Next steps
 
+# Resources
+
+
 # Credits
+
+
+# License
+
+Pokiaľ nie je uvedené inak, obsah tohto dokumentu je licencovaný licenciou [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+![Creative Commons](img/cc.svg) ![by](img/by.svg) ![nc-eu](img/nc-eu.svg) ![sa](img/sa.svg)
