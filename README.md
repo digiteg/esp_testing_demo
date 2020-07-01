@@ -458,6 +458,10 @@ except AssertionError as err:
 
 # Test Driven Development
 
+The simple concept of TDD is to write and correct the failed tests before writing new code (before development). This helps to avoid duplication of code as we write a small amount of code at a time in order to pass tests. (Tests are nothing but requirement conditions that we need to test to fulfill them).
+![Test Driven Development](/img/tdd.png)
+
+
 ### Step 1:
 ### Step 2:
 ### Step 3:
