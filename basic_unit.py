@@ -128,7 +128,7 @@ testBVA()
 
 
 conditions = ["Printer does not print", "A red light is flashing",
-              "Printer is unrecognised"]  # That was 3 conditions
+              "Printer is unrecognized"]  # That was 3 conditions
 
 Power_Cable = "Check the power cable"
 Printer_Computer_Cable = "Check the printer-computer cable"
@@ -180,7 +180,7 @@ testDTT()
 # --------------------------------------------------------------------------------------------
 # Fibonacci
 
-
+# returns fibonacci number
 def fib(n):
     
 #    if n is None or type(n) is str or n < 0:
@@ -189,7 +189,7 @@ def fib(n):
     if n == 0 or n == 1:
         return n
     else:
-        return fib(n - 1) + fib(n - 2)
+        return fib(n - 1) + fib(n - 2) # recursive call 
 
 
 try:

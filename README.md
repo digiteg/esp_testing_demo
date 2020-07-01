@@ -182,6 +182,7 @@ print("Dictionary test: pass")
 ## 1. Equivalence Partitioning
 ![Equivalence Partitioning](/img/testtecheqp.png)
 
+
 ```python
 # Equivalence Partitioning
 
@@ -207,6 +208,8 @@ print("Equivalence Partitioning test: pass")
 
 ## 2. Boundary Value Analysis
 ![Boundary Value Analysis](/img/testtechbva.png)
+
+
 ```python
 # Boundary Value Analysis
 
@@ -246,13 +249,26 @@ testBVA()
 
 ![Decision Table Testing](/img/testtechdtt.png)
 
+|Conditions|Rule 1|Rule 2|Rule 3|Rule 4|Rule 5|Rule 6| Rule 7|
+| :----------------|---:|---:| ----:| ----:| ----:|----:|----:|
+| Printer does not print | True	 | True | False | False | True | True | False
+| A red light is flashing | False | True | True | False | True| False| True
+| Printer is unrecognized | True | True | True | True | False| False| False
+| **Actions** 	 
+| Check the power cable | x	| 
+| Check the printer-computer cable | x | x | 
+| Ensure printer software is installed | x | x | x |x |
+| Check/replace ink | | x |x | |x ||x|
+| Check for paper jam | | | | | x |x|
+
+
 ```python
 # Decision Table Testing
 
 
 
 conditions = ["Printer does not print", "A red light is flashing",
-              "Printer is unrecognised"]  # That was 3 conditions
+              "Printer is unrecognized"]  # That was 3 conditions
 
 Power_Cable = "Check the power cable"
 Printer_Computer_Cable = "Check the printer-computer cable"
@@ -321,20 +337,24 @@ Tester knows common mistakes that developers usually forget to handle:
 
 
 
-# Lets try few Testing Techniques 
-- Boundary Values
-- Error Guessing
+# Application of Testing Techniques 
+
+In mathematics, the Fibonacci numbers, commonly denoted Fn, form a sequence, called the Fibonacci sequence, such that each number is the sum of the two preceding ones, starting from 0 and 1. That is, and for n > 1 [wikipedia]
 
 ```python
+# returns fibonacci number
 def fib(n):
     if n == 0 or n == 1:
         return n
     else:
-        return fib(n - 1) + fib(n - 2)
+        return fib(n - 1) + fib(n - 2) # recursive call 
 ```
 
 ![State Transition Testing](/img/fib.jpg)
 
+Lets try few testing techniques applied on fibonacci function example
+- Boundary Values
+- Error Guessing
 ```python
 # Fibonacci
 
