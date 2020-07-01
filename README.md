@@ -363,9 +363,10 @@ testDTT()
 <br/>
 
 ## 4. State Transition Testing
-![State Transition Testing](/img/testtechstt.png)
 
 Technique changes in input conditions which change the state of the Application Under Test (AUT). This allows the tester to test the behavior of an AUT. The tester can perform this action by entering various input conditions in a sequence. You should provide positive as well as negative input test values for evaluating the system behavior.
+
+![State Transition Testing](/img/testtechstt.png)
 
 Guidelines:
 
