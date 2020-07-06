@@ -1,7 +1,7 @@
 
 import sys
 import traceback
-from inspect import getmembers, isfunction, getargspec
+from inspect import getmembers, isfunction, getargspec,getsourcelines
 
 import logging
 
@@ -29,16 +29,19 @@ def get_tests(module):
 
     tests = set()
 
-    for name, data in getmembers(module, isfunction):
-        if name.startswith('test_'):
-            tests.add(name)  # [5:]
+    for name, fn in getmembers(module, isfunction): # retrive name obj of functions
+        if name.startswith('test_'): # function starts with test_
+            lineno = getsourcelines(fn)[1] # return function starting line
+            tests.add((lineno,name))   # create touple list
+
+    tests = sorted(tests)
     return tests
 
 
 tests = get_tests(wallet)
 print(tests)
 
-for name in tests:
+for lineno, name in tests:
     # get the reference to the function from the module
     fn = getattr(wallet, name)
     args, varargs, varkw, defaults = getargspec(fn)
