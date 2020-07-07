@@ -1,4 +1,7 @@
+
+======================= Testing block: wallet ===============================
 Starting tests from file c:\Python\esp_testing_demo\src2\wallet.py
+
 PASSED: test_uppercase
 PASSED: test_reversed
 PASSED: test_some_primes

@@ -37,10 +37,10 @@ class Microtest:
 
     def _log_assertion_exception(self, fname, ex):
         self.log.log_failed("{} raised {} ({})",
-                           fname,  # this is optional
-                           ex.__class__,
-                           ex.__doc__
-                           )
+                            fname,  # this is optional
+                            ex.__class__,
+                            ex.__doc__
+                            )
 
     def _get_tests(self, module):
 
@@ -55,13 +55,30 @@ class Microtest:
         tests = sorted(tests)
         return tests
 
+    def _log_start_test_block(self, mname, mfile):
+        self.log.log_line(
+            "\n======================= Testing block: {} ===============================", mname)
+        self.log.log_line("Starting tests from file {}\n", mfile)
+
+    def _log_summary(self, mname):
+
+        self.log.log_line(
+            "\n======================= Summary {} ===============================\n", mname)
+        self.log.log_line("Total Passed {}", self.count_passed)
+        self.log.log_line("Total Skipped {}", self.count_skipped)
+        self.log.log_line("Total Failed {}", self.count_failed)
+        self.log.log_line("Total Errors {}", self.count_error)
+
+        self.log.log_line("Expected Failures {}", self.count_expected_failures)
+        self.log.log_line("Unexpected Passes {}", self.count_unexpected_passes)
+
     def run_test(self, module, log_module_file=True, log_module=True):
 
         module_name = module.__name__
         module_file = module.__file__
 
         if log_module_file:
-            self.log.log_line("Starting tests from file {}", module_file)
+            self._log_start_test_block(module_name, module_file)
 
         tests = self._get_tests(module)
 
@@ -97,13 +114,14 @@ class Microtest:
                 self._log_exception(name, e)
                 self.count_error += 1
 
+        self._log_summary(module_name)
 
-        self.log.log_line("\n======================= Summary {} ===============================\n",module_name)
-        self.log.log_line("Total Passed {}",self.count_passed)
-        self.log.log_line("Total Skipped {}",self.count_skipped)
-        self.log.log_line("Total Failed {}",self.count_failed)
-        self.log.log_line("Total Errors {}",self.count_error)
+        def setup(self):
+            pass
 
-        self.log.log_line("Expected Failures {}",self.count_expected_failures)
-        self.log.log_line("Unexpected Passes {}",self.count_unexpected_passes)
-         
+        def clear(self):
+            if log is not None:
+                self.log.clear()
+
+        def __del__(self):
+            self.clear()
