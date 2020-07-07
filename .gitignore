@@ -2,4 +2,4 @@
 *.hex
 .micropythonrc
 .gitignore
-
+__pycache__
