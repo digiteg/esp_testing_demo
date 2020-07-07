@@ -101,6 +101,8 @@ def test_format_data_for_excel(example_people_data):
 def test_fail():
     assert 1 == 2
 
+def test_error():
+    1/0
 
 def say_whee(vdata):
     print("Whee!")

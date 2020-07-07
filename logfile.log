@@ -1,0 +1,17 @@
+Starting tests from file c:\Python\esp_testing_demo\src2\wallet.py
+PASSED: test_uppercase
+PASSED: test_reversed
+PASSED: test_some_primes
+PASSED: test_format_data_for_display
+PASSED: test_format_data_for_excel
+FAILED: test_fail raised <class 'AssertionError'> (Assertion failed.)
+ERROR: test_error raised <class 'ZeroDivisionError'> (Second argument to a division or modulo operation was zero.): division by zero
+
+======================= Summary wallet ===============================
+
+Total Passed 5
+Total Skipped 0
+Total Failed 1
+Total Errors 1
+Expected Failures 0
+Unexpected Passes 0

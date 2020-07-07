@@ -1,8 +1,13 @@
 import sys
 
 
-CRITICAL = 50
-ERROR = 40
+CRITICAL = 80
+ERROR = 70
+
+FAILED = 60
+PASSED = 50
+SKIPPED = 40
+
 WARNING = 30
 INFO = 20
 DEBUG = 10
@@ -21,6 +26,9 @@ class _BasicLogger:
         WARNING: "WARNING",
         INFO: "INFO",
         DEBUG: "DEBUG",
+        FAILED: "FAILED",
+        PASSED: "PASSED",
+        SKIPPED: "SKIPPED"
     }
 
     def __init__(self, name, vlevel=NOTSET, wlevel_name=True, vwrite_name=True):
@@ -81,7 +89,7 @@ class _BasicLogger:
         pass
 
     def write_end_line(self):
-        pass    
+        pass
 
     # log message
     def log(self, vlevel, msg, *args):
@@ -90,14 +98,14 @@ class _BasicLogger:
                 self.write_level_name(
                     self._level_str(vlevel), self._write_name)
             self.log_line(msg, *args)
-          
+
     # log text line
     def log_line(self, msg, *args):
         if not args:
             self.write(msg)
         elif msg is not None:
             self.write(msg.format(*args))
-        self.write_end_line()        
+        self.write_end_line()
 
     # log level
     def log_debug(self, msg, *args):
@@ -115,6 +123,17 @@ class _BasicLogger:
     def log_critical(self, msg, *args):
         self.log(CRITICAL, msg, *args)
 
+    # log Tests 
+    def log_passed(self, msg, *args):
+        self.log(PASSED, msg, *args)
+
+    def log_failed(self, msg, *args):
+        self.log(FAILED, msg, *args)
+
+    def log_skipped(self, msg, *args):
+        self.log(SKIPPED, msg, *args)
+
+
 
 class TextLogger(_BasicLogger):
     def write(self, message):
@@ -122,9 +141,9 @@ class TextLogger(_BasicLogger):
 
     def write_level_name(self, blev, isname=False):
         if isname:
-            print("{}:{}:".format(blev, self.name), end="")
+            print("{}:{}: ".format(blev, self.name), end="")
         else:
-            print("{}:".format(blev), end="")
+            print("{}: ".format(blev), end="")
 
 
 class FileLogger(_BasicLogger):
@@ -136,21 +155,19 @@ class FileLogger(_BasicLogger):
         f = open(logfile, 'w')
         self._file = f
 
-
     def write_end_line(self):
         if(self._file != None and not self._file.closed):
             self._file.write("\n")
 
     def write_level_name(self, blev, isname=False):
         if isname:
-            self._file.write("{}:{}:".format(blev, self.name))
+            self._file.write("{}:{}: ".format(blev, self.name))
         else:
-            self._file.write("{}:".format(blev))
+            self._file.write("{}: ".format(blev))
 
     def write(self, message):
         if(self._file != None and not self._file.closed):
             self._file.write(message)
-
 
     def flush(self):
         if(self._file != None and not self._file.closed):
@@ -196,6 +213,7 @@ class LogRunner:
         for logger in self._loggers.values():
             logger.log_line(msg, *args)
 
+    # log level
     def log_debug(self, msg, *args):
         for logger in self._loggers.values():
             logger.log_debug(msg, *args)
@@ -215,6 +233,27 @@ class LogRunner:
     def log_critical(self, msg, *args):
         for logger in self._loggers.values():
             logger.log_critical(msg, *args)
+
+
+    # log test
+
+    def log_passed(self, msg, *args):
+        for logger in self._loggers.values():
+            logger.log_passed(msg, *args)
+
+
+    def log_failed(self, msg, *args):
+        for logger in self._loggers.values():
+            logger.log_failed(msg, *args)
+
+
+    def log_skipped(self, msg, *args):
+        for logger in self._loggers.values():
+            logger.log_skipped(msg, *args)
+
+
+
+    # stream
 
     def flush(self):
         for logger in self._loggers.values():
