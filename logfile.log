@@ -1,20 +1,39 @@
 
-======================= Testing block: wallet ===============================
-Starting tests from file c:\Python\esp_testing_demo\src2\wallet.py
+======================= Test suite Start: test_wallet ===============================
+Loaded file: c:\Python\esp_testing_demo\src2\test_wallet.py
+Tests collected: 5
 
-PASSED: test_uppercase
-PASSED: test_reversed
-PASSED: test_some_primes
-PASSED: test_format_data_for_display
-PASSED: test_format_data_for_excel
-FAILED: test_fail raised <class 'AssertionError'> (Assertion failed.)
-ERROR: test_error raised <class 'ZeroDivisionError'> (Second argument to a division or modulo operation was zero.): division by zero
+PASSED: test_default_initial_amount
+PASSED: test_setting_initial_amount
+PASSED: test_wallet_add_cash
+PASSED: test_wallet_spend_cash
+ERROR: test_wallet_spend_cash_raises_exception_on_insufficient_amount raised <class 'wallet.InsufficientAmount'> (None): Not enough available to spend 100
 
-======================= Summary wallet ===============================
+======================= Summary of: test_wallet ===============================
 
-Total Passed 5
+Total Passed 4
 Total Skipped 0
-Total Failed 1
+Total Failed 0
+Total Errors 1
+Expected Failures 0
+Unexpected Passes 0
+
+======================= Test suite Start: test_fibonacci ===============================
+Loaded file: c:\Python\esp_testing_demo\src2\test_fibonacci.py
+Tests collected: 6
+
+PASSED: test_fib_edge0
+PASSED: test_fib_edge1
+PASSED: test_fib_internal21
+PASSED: test_fib_invalid_minus1
+PASSED: test_fib_invalid_none
+PASSED: test_fib_invalid_string
+
+======================= Summary of: test_fibonacci ===============================
+
+Total Passed 10
+Total Skipped 0
+Total Failed 0
 Total Errors 1
 Expected Failures 0
 Unexpected Passes 0

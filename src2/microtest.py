@@ -21,11 +21,11 @@ class Microtest:
         self.log = logging.LogRunner()
         self.log.basicConfig(vlevel=logging.INFO)
 
-    def _extract_function_name(self):
-        tb = sys.exc_info()[-1]
-        stk = traceback.extract_tb(tb, 1)
-        fname = stk[0][3]
-        return fname
+#    def _extract_function_name(self):
+#        tb = sys.exc_info()[-1]
+#        stk = traceback.extract_tb(tb, 1)
+#        fname = stk[0][3]
+#        return fname
 
     def _log_exception(self, fname, ex):
         self.log.log_error("{} raised {} ({}): {}",
@@ -55,15 +55,16 @@ class Microtest:
         tests = sorted(tests)
         return tests
 
-    def _log_start_test_block(self, mname, mfile):
+    def _log_start_tests_block(self, mname, mfile, count):
         self.log.log_line(
-            "\n======================= Testing block: {} ===============================", mname)
-        self.log.log_line("Starting tests from file {}\n", mfile)
+            "\n======================= Test suite Start: {} ===============================", mname)
+        self.log.log_line("Loaded file: {}", mfile)
+        self.log.log_line("Tests collected: {}\n", count)
 
     def _log_summary(self, mname):
 
         self.log.log_line(
-            "\n======================= Summary {} ===============================\n", mname)
+            "\n======================= Summary of: {} ===============================\n", mname)
         self.log.log_line("Total Passed {}", self.count_passed)
         self.log.log_line("Total Skipped {}", self.count_skipped)
         self.log.log_line("Total Failed {}", self.count_failed)
@@ -72,15 +73,19 @@ class Microtest:
         self.log.log_line("Expected Failures {}", self.count_expected_failures)
         self.log.log_line("Unexpected Passes {}", self.count_unexpected_passes)
 
-    def run_test(self, module, log_module_file=True, log_module=True):
+
+    # test suite is a collection of test cases. It is used to aggregate tests that must be run together.
+
+    def run_test_suite(self, module, log_module_file=True, log_module=True):
 
         module_name = module.__name__
         module_file = module.__file__
 
-        if log_module_file:
-            self._log_start_test_block(module_name, module_file)
-
         tests = self._get_tests(module)
+
+        if log_module_file:
+            self._log_start_tests_block(module_name, module_file,len(tests))
+
 
         for lineno, name in tests:
 
@@ -116,12 +121,12 @@ class Microtest:
 
         self._log_summary(module_name)
 
-        def setup(self):
-            pass
+    def setup(self):
+        pass
 
-        def clear(self):
-            if log is not None:
-                self.log.clear()
+    def clear(self):
+        if self.log is not None:
+            self.log.clear()
 
-        def __del__(self):
-            self.clear()
+    def __del__(self):
+        self.clear()
