@@ -74,8 +74,19 @@ class Microtest:
         self.log.log_line("Unexpected Passes {}", self.count_unexpected_passes)
 
 
-    # test suite is a collection of test cases. It is used to aggregate tests that must be run together.
+   
 
+    def _test_suite_counters_init(self):
+        self.count_passed = 0
+        self.count_failed = 0
+        self.count_skipped = 0
+        self.count_error = 0
+
+        self.count_expected_failures = 0
+        self.count_unexpected_passes = 0
+
+
+    # test suite is a collection of test cases. It is used to aggregate tests that must be run together.
     def run_test_suite(self, module, log_module_file=True, log_module=True):
 
         module_name = module.__name__
@@ -86,6 +97,7 @@ class Microtest:
         if log_module_file:
             self._log_start_tests_block(module_name, module_file,len(tests))
 
+        self._test_suite_counters_init()
 
         for lineno, name in tests:
 
@@ -120,6 +132,7 @@ class Microtest:
                 self.count_error += 1
 
         self._log_summary(module_name)
+
 
     def setup(self):
         pass

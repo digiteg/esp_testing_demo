@@ -31,9 +31,9 @@ PASSED: test_fib_invalid_string
 
 ======================= Summary of: test_fibonacci ===============================
 
-Total Passed 10
+Total Passed 6
 Total Skipped 0
 Total Failed 0
-Total Errors 1
+Total Errors 0
 Expected Failures 0
 Unexpected Passes 0
