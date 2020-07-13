@@ -263,6 +263,35 @@ test_integration()
 ```
 <br/>
 
+# Basic Python testing frameworks
+
+Test case: test case is the smallest unit of testing. It checks for a specific response for a specific set of input data.
+
+Test suite: test suite is a collection of test cases. It is used to aggregate tests that must be run together.
+
+Test fixture: test fixture is the fixed state of the objects used as the source when performing tests.
+- The purpose of using fixture is if you have a complex test case, then preparing the desired state can easily take a lot of resources (for example, you consider a function with certain accuracy and each next sign of accuracy in the calculations takes a day). 
+- Using fixture (on slang - fixtures), we skip the preliminary preparation of the state and immediately begin testing. 
+- Test fixture can appear, for example, in the form (database state, set of environment variables, set of files with the necessary content).
+
+Test runner: test runner is a component that organizes the execution of tests and provides the result to the user.
+
+# Different libraries and frameworks for unit testing on Python - overview
+- Unittest - The most popular library for unit testing in Python  
+- PyTest  - is an open-source Python-based testing framework. It is designed for all-purpose testing and has the capability for Functional and API testing
+- Robot - The Robot framework is also used for Robotic Process Automation (RPA).
+- Django - allows writing automated testing for modern web development. 
+- Flask - provides ample opportunity to test your web application using tests and by processing local context variables.
+
+## Why PyTest ?
+- More pythonic way of writing your tests.
+- Supports simple or complex code to test API, databases, and UIs.
+- Has a Simple python syntax.
+- Number of plugins.
+- Ability to run tests in parallel.
+- Ability to run selected specific subset of tests.
+
+
 # Next steps
 
 In third part of this tutorial I will cover complex testing scenario and untouched related topics
