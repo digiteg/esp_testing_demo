@@ -149,6 +149,9 @@ test_std1() # expected 1.0
 test_std2() # empty list test expected 0
 test_std3() # Test a real case expected 2.0
 ```
+<br/>
+
+![Test Driven Development](/img/tddfails.jpg)
 
 ## Step 6: Final implementation of standard deviation function, *std()*
 
@@ -218,9 +221,6 @@ test_std3() # Test a real case expected 2.0
 test_std4() # value is not zero. expected 1.0
 test_std5() # two same values expected 0
 ```
-<br/>
-
-![Test Driven Development](/img/tddfails.jpg)
 
 
 <br/>
