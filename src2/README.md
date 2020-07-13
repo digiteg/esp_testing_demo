@@ -265,16 +265,16 @@ test_integration()
 
 # Basic Python testing frameworks
 
-Test case: test case is the smallest unit of testing. It checks for a specific response for a specific set of input data.
+**_Test case_**: test case is the smallest unit of testing. It checks for a specific response for a specific set of input data.
 
-Test suite: test suite is a collection of test cases. It is used to aggregate tests that must be run together.
+**_Test suite_**: test suite is a collection of test cases. It is used to aggregate tests that must be run together.
 
-Test fixture: test fixture is the fixed state of the objects used as the source when performing tests.
+**_Test fixture_**: test fixture is the fixed state of the objects used as the source when performing tests.
 - The purpose of using fixture is if you have a complex test case, then preparing the desired state can easily take a lot of resources (for example, you consider a function with certain accuracy and each next sign of accuracy in the calculations takes a day). 
 - Using fixture (on slang - fixtures), we skip the preliminary preparation of the state and immediately begin testing. 
 - Test fixture can appear, for example, in the form (database state, set of environment variables, set of files with the necessary content).
 
-Test runner: test runner is a component that organizes the execution of tests and provides the result to the user.
+**_Test runner_**: test runner is a component that organizes the execution of tests and provides the result to the user.
 
 # Different libraries and frameworks for unit testing on Python - overview
 - Unittest - The most popular library for unit testing in Python  
