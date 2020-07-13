@@ -6,7 +6,7 @@ First part of this tutorial was covering intro and testing examples if you are i
 Some summary from part 1 of this tutorial is about what could be considered and can make sense in your case if you develop IoT application with ESP8266 and Micropython
 
 
-![No Tests](/img/tests.jpg)
+
 
 
 ## **Short recap..**
