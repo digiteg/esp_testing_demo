@@ -4,9 +4,9 @@ I was digging on internet for some examples about testing on ESP8266 in MicroPyt
 
 # Trutorial parts
 
-[Part 1 ](/src1/README.md)  - in this tutorial I will cover simple Testing examples doable in MicroPython
+[![Part 1 ](/img/part1.png)](/src1/README.md)  - in this tutorial I will cover simple Testing examples doable in MicroPython
 
-[Part 2 ](/src2/README.md) - in this tutorial I will show more complex testing examples 
+[![Part 2 ](/img/part2.png)](/src2/README.md) - in this tutorial I will show more complex testing examples 
 
 <br/>
 
