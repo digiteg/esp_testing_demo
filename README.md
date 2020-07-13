@@ -10,8 +10,6 @@ I was digging on internet for some examples about testing on ESP8266 in MicroPyt
 
 <br/>
 
-![No Tests](/img/tests.jpg)
-
 
 # Resources
 
@@ -23,8 +21,9 @@ Further reading and useful links:
 - [wikipedia Standard deviation](https://en.wikipedia.org/wiki/Standard_deviation)
 
 
-# Credits
+# Don't forget
 
+![No Tests](/img/tests.jpg)
 
 # License
 Unless otherwise noted, the contents of this document are licensed under a license
