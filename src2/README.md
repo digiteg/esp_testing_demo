@@ -282,4 +282,4 @@ Further reading and useful links:
 Unless otherwise noted, the contents of this document are licensed under a license
 [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/).
 
-![Creative Commons](img/cc.svg) ![by](img/by.svg) ![nc-eu](img/nc-eu.svg) ![sa](img/sa.svg)
+![Creative Commons](/img/cc.svg) ![by](/img/by.svg) ![nc-eu](/img/nc-eu.svg) ![sa](/img/sa.svg)
