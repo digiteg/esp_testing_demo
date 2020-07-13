@@ -280,7 +280,7 @@ Usual vocabulary around testing frameworks contain following terms:
 
 # Basic overview 
 Different libraries and frameworks for unit testing on Python:
-- **Unittest** - The most popular library for unit testing in Python  
+- **Unittest** - The most popular library for unit testing in Python 
 - **PyTest**  - is an open-source Python-based testing framework. It is designed for all-purpose testing and has the capability for Functional and API testing
 - **Robot** - The Robot framework is also used for Robotic Process Automation (RPA).
 - **Django** - allows writing automated testing for modern web development. 
