@@ -10,8 +10,9 @@ I was digging on internet for some examples about testing on ESP8266 in Micropyt
 
 # Next steps
 
-In second part of this tutorial I will cover more complex testing examples and untouched related topics
+[Part 1 ](/src1/README.md)  - in this tutorial I will 
 
+[Part 2 ](/src2/README.md) - in this tutorial I will cover more complex testing examples and untouched related 
 
 # Resources
 
