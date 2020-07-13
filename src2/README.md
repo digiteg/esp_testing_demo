@@ -263,7 +263,9 @@ test_integration()
 ```
 <br/>
 
-# Basic Python testing frameworks
+# Basics of testing framework
+
+Usual vocabulary around testing frameworks contain following terms: 
 
 **_Test case_**: test case is the smallest unit of testing. It checks for a specific response for a specific set of input data.
 
@@ -276,12 +278,13 @@ test_integration()
 
 **_Test runner_**: test runner is a component that organizes the execution of tests and provides the result to the user.
 
-# Different libraries and frameworks for unit testing on Python - overview
-- Unittest - The most popular library for unit testing in Python  
-- PyTest  - is an open-source Python-based testing framework. It is designed for all-purpose testing and has the capability for Functional and API testing
-- Robot - The Robot framework is also used for Robotic Process Automation (RPA).
-- Django - allows writing automated testing for modern web development. 
-- Flask - provides ample opportunity to test your web application using tests and by processing local context variables.
+# Basic overview 
+Different libraries and frameworks for unit testing on Python:
+- **Unittest** - The most popular library for unit testing in Python  
+- **PyTest**  - is an open-source Python-based testing framework. It is designed for all-purpose testing and has the capability for Functional and API testing
+- **Robot** - The Robot framework is also used for Robotic Process Automation (RPA).
+- **Django** - allows writing automated testing for modern web development. 
+- **Flask** - provides ample opportunity to test your web application using tests and by processing local context variables.
 
 ## Why PyTest ?
 - More pythonic way of writing your tests.
