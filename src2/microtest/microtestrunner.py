@@ -1,13 +1,26 @@
+# -------------------------------------------------------------------------------
+# Name:        MicroTestRunner
+# Purpose:     Enable logging on micro controller
+#
+# Author:      Milan Varga
+#
+# Created:     13.07.2020
+# Copyright:   (c) Milan Varga 2020
+# Licence:     Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0).
+# -------------------------------------------------------------------------------
+
 import sys
 import traceback
 from inspect import getmembers, isfunction, getargspec, getsourcelines
 
-import logging
+from microtest.micrologger import MicroLogger
+from microtest.basiclogger import LogLevels
 
 
-class Microtest:
+class MicroTestRunner:
 
     log = None
+    _test_suites_list = None
 
     count_passed = 0
     count_failed = 0
@@ -17,9 +30,10 @@ class Microtest:
     count_expected_failures = 0
     count_unexpected_passes = 0
 
-    def __init__(self):
-        self.log = logging.LogRunner()
-        self.log.basicConfig(vlevel=logging.INFO)
+    def __init__(self, modglobals=None):
+        self.log = MicroLogger()
+        self.log.basicConfig(vlevel=LogLevels.INFO)
+        self.setup(modglobals)
 
 #    def _extract_function_name(self):
 #        tb = sys.exc_info()[-1]
@@ -73,9 +87,6 @@ class Microtest:
         self.log.log_line("Expected Failures {}", self.count_expected_failures)
         self.log.log_line("Unexpected Passes {}", self.count_unexpected_passes)
 
-
-   
-
     def _test_suite_counters_init(self):
         self.count_passed = 0
         self.count_failed = 0
@@ -85,17 +96,17 @@ class Microtest:
         self.count_expected_failures = 0
         self.count_unexpected_passes = 0
 
+    # Iterate within test suite as it is a collection of test cases. It is used to aggregate tests that must be run together.
 
-    # test suite is a collection of test cases. It is used to aggregate tests that must be run together.
-    def run_test_suite(self, module, log_module_file=True, log_module=True):
+    def run_test_suite(self, module, log_module_file_name=True, log_module_name=True):
 
         module_name = module.__name__
         module_file = module.__file__
 
         tests = self._get_tests(module)
 
-        if log_module_file:
-            self._log_start_tests_block(module_name, module_file,len(tests))
+        if log_module_file_name:
+            self._log_start_tests_block(module_name, module_file, len(tests))
 
         self._test_suite_counters_init()
 
@@ -112,7 +123,7 @@ class Microtest:
                 else:
                     fn(args)
 
-                if log_module:
+                if log_module_name:
                     self.log.log_passed("{}:{}".format(module_name, name))
                 else:
                     self.log.log_passed(name)
@@ -120,7 +131,7 @@ class Microtest:
                 self.count_passed += 1
 
             except AssertionError as err:
-                if log_module:
+                if log_module_name:
                     self._log_assertion_exception(
                         "{}:{}".format(module_name, name), err)
                 else:
@@ -133,9 +144,34 @@ class Microtest:
 
         self._log_summary(module_name)
 
+    # return Test suites = modules starting with test_
+    def _get_test_modules(self, modlist):
+        test_sets = set()
+        position = 0
+        # retrive name obj of functions
+        for module_name, obj in modlist.items():
+            if module_name.startswith('test_'):  # function starts with test_
+                position += 1  # add number
+                # create touple list
+                test_sets.add((position, module_name, obj))
 
-    def setup(self):
-        pass
+        return sorted(test_sets)
+
+    # test runner is a component that organizes the execution of tests and provides the result to the user.
+    def exec(self, log_module_file_name=True, log_module_name=False):
+
+        if self._test_suites_list is None:
+            self.log.log_line("None Test Suites and Tests founded")
+            return
+
+        for pos, module_name, obj in self._test_suites_list:
+            self.run_test_suite(obj, log_module_file_name, log_module_name)
+
+    def setup(self, modglobals):
+        if modglobals is not None:
+            self._test_suites_list = self._get_test_modules(modglobals)
+        else:
+            self._test_suites_list = None
 
     def clear(self):
         if self.log is not None:
