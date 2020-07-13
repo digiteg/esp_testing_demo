@@ -3,12 +3,11 @@
 
 First part of this tutorial was covering intro and testing examples if you are interested please [read more on Part 1 link](/src1/README.md)
 
+![Test Driven Development](/img/tests.jpg)
 
-## **Back to Testing..**
+## **Short recap..**
 
-You can find lot of great articles about this topic explaining why it is worth spend so much time with Testing or why TDD make sense and so on. Usually my first and simple answer why is ist just because we want to suppress future costs of fixing bugs in production. Real nightmare of each developer doing coding for living should be spending hours of life time in finding bugs in code done by someone else running production with help of neurotic manager who is keeping him or her in pace..  
- 
-Some summary from my small internet research is bellow and it is about what could be considered and make sense in our case if we develop IoT application with ESP8266 and Micropython
+Some summary from part 1 of this tutorial is about what could be considered and can make sense in your case if you develop IoT application with ESP8266 and Micropython
 
 ### **Best practices for effective IoT Testing**
 
