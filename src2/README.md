@@ -42,8 +42,6 @@ Some summary from part 1 of this tutorial is about what could be considered and 
 <br/>
 
 
-<br/>
-
 # Test Driven Development
 
 The simple concept of TDD is to write and correct the failed tests before writing new code (before development). This helps to avoid duplication of code as we write a small amount of code at a time in order to pass tests. (Tests are nothing but requirement conditions that we need to test to fulfill them).
@@ -66,6 +64,8 @@ Adherence to these principles helps allow for incremental architecture, because 
 - Well-designed software is modular. 
 - Independently testable code is already proven to be sufficiently independent and well-designed to allow for future redesign!
 
+
+![Test Driven Development](/img/tddchuck.jpg)
 
 # TDD showcase
 
@@ -215,6 +215,7 @@ test_std3() # Test a real case expected 2.0
 test_std4() # value is not zero. expected 1.0
 test_std5() # two same values expected 0
 ```
+<br/>
 
 ![Test Driven Development](/img/tddfails.jpg)
 
@@ -261,7 +262,7 @@ test_integration()
 
 # Next steps
 
-In second part of this tutorial I will cover more complex testing examples and untouched related topics
+In third part of this tutorial I will cover complex testing scenario and untouched related topics
 
 # Resources
 
