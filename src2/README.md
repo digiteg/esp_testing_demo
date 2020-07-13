@@ -3,7 +3,7 @@
 
 First part of this tutorial was covering intro and testing examples if you are interested please [read more on Part 1 link](/src1/README.md)
 
-![Test Driven Development](/img/tests.jpg)
+![No Tests](/img/tests.jpg)
 
 ## **Short recap..**
 
@@ -215,6 +215,9 @@ test_std3() # Test a real case expected 2.0
 test_std4() # value is not zero. expected 1.0
 test_std5() # two same values expected 0
 ```
+
+![Test Driven Development](/img/tddfails.jpg)
+
 
 <br/>
 
