@@ -12,7 +12,6 @@ I was digging on internet for some examples about testing on ESP8266 in MicroPyt
 
 ![No Tests](/img/tests.jpg)
 
-<br/>
 
 # Resources
 
