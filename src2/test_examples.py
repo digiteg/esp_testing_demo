@@ -1,33 +1,64 @@
 import sys
+import timeit
+from fixtures import my_dec
 
-class SkipTest(Exception):
+
+
+
+@noparam
+def people_data():
+    return [
+        {
+            "given_name": "Alfonsa",
+            "family_name": "Ruiz",
+            "title": "Senior Software Engineer",
+        },
+        {
+            "given_name": "Sayid",
+            "family_name": "Khan",
+            "title": "Project Manager",
+        }
+    ]
+
+@property
+def data():
+    print("property run")
+    return [
+        {
+            "given_name": "Alfonsa",
+            "family_name": "Ruiz",
+            "title": "Senior Software Engineer",
+        },
+        {
+            "given_name": "Sayid",
+            "family_name": "Khan",
+            "title": "Project Manager",
+        }
+    ]
+
+@data.setter
+def data(val):
     pass
 
-def skip(msg):
-    def _decor(fun):
-        # We just replace original fun with _inner
-        def _inner(self):
-            raise SkipTest(msg)
-        return _inner
-    return _decor
+# ------------------------
 
-def skipIf(cond, msg):
-    if not cond:
-        return lambda x: x
-    return skip(msg)
+def format_data_for_display(data):
+    return [ "Alfonsa Ruiz: Senior Software Engineer", "Sayid Khan: Project Manager"]
 
-def skipUnless(cond, msg):
-    if cond:
-        return lambda x: x
-    return skip(msg)
+def format_data_for_excel(data):
+    return  """given,family,title Alfonsa,Ruiz,Senior Software Engineer Sayid,Khan,Project Manager"""
+
+def say_whee(vdata):
+    print("Whee!")
+    print(vdata)
 
 
-# --------------------------------------- Decorator Fixture
+def func():
+    pass
 
+execution_time = timeit.timeit(func, number=1)
+print(execution_time)
 
-def my_dec(func):
-    print("Something is happening before the function is called.")
-    return func()
 
 # ------------------------
 
@@ -47,55 +78,11 @@ def test_some_primes():
     }
 
 
-def format_data_for_display(data):
-    return [ "Alfonsa Ruiz: Senior Software Engineer", "Sayid Khan: Project Manager"]
+def test_format_data_for_display(people_data):
+    assert format_data_for_display(people_data) == [ "Alfonsa Ruiz: Senior Software Engineer", "Sayid Khan: Project Manager"]
 
-def format_data_for_excel(data):
-    return  """given,family,title Alfonsa,Ruiz,Senior Software Engineer Sayid,Khan,Project Manager"""
-
-
-
-@my_dec
-def people_data():
-    return [
-        {
-            "given_name": "Alfonsa",
-            "family_name": "Ruiz",
-            "title": "Senior Software Engineer",
-        },
-        {
-            "given_name": "Sayid",
-            "family_name": "Khan",
-            "title": "Project Manager",
-        }
-    ]
-
-@property
-def data():
-    return [
-        {
-            "given_name": "Alfonsa",
-            "family_name": "Ruiz",
-            "title": "Senior Software Engineer",
-        },
-        {
-            "given_name": "Sayid",
-            "family_name": "Khan",
-            "title": "Project Manager",
-        }
-    ]
-
-@data.setter
-def data(val):
-    pass
-
-
-
-def test_format_data_for_display(example_people_data):
-    assert format_data_for_display(example_people_data) == [ "Alfonsa Ruiz: Senior Software Engineer", "Sayid Khan: Project Manager"]
-
-def test_format_data_for_excel(example_people_data):
-    assert format_data_for_excel(example_people_data) == """given,family,title Alfonsa,Ruiz,Senior Software Engineer Sayid,Khan,Project Manager"""
+def test_format_data_for_excel(people_data):
+    assert format_data_for_excel(people_data) == """given,family,title Alfonsa,Ruiz,Senior Software Engineer Sayid,Khan,Project Manager"""
 
 
 def test_fail():
@@ -104,13 +91,10 @@ def test_fail():
 def test_error():
     1/0
 
-def say_whee(vdata):
-    print("Whee!")
-    print(vdata)
 
-
-# @people_data
-# test_format_data_for_excel(people_data)
+print(data)
+#@people_data
+test_format_data_for_display(data)
 
 # @people_data
 # test_format_data_for_display(people_data)
