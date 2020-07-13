@@ -1,31 +1,8 @@
 # **Part 2 - ESP8266 Simple Testing with examples in Micropython**
 
-I was digging on internet for some examples about testing on ESP8266 in Micropython just for myself education purpose and I didn't find too much useful examples for me. So I decided to fill this gap and I hope this can be  also useful for others who are willing to deal with the topic or teach their students about basics and how to automate testing. Why ESP8266 ? Because it is cost-effective and highly integrated Wi-Fi MCU for IoT / smart things... applications
 
 First part of this tutorial was covering intro and testing examples if you are interested please [read more on Part 1 link](/src1/README.md)
 
-
-<br/>
-
-# Things used in this project
-
-
-
-
- ![NodeMCU ESP8266](/img/ESP8266.jpg)
-
-### **Hardware components**
-- Waveshare NodeMCU-32S ESP32 WiFi + Bluetooth
-
-### **Software apps and online services**
-- [Thony](https://thonny.org/)
-- [MicroPython unicorn online editor](https://micropython.org/unicorn/)
-
-<br/>
-
-# Short recap
-
-![Testing Phase](/img/introtesting.png)
 
 ## **Back to Testing..**
 
@@ -46,6 +23,25 @@ Some summary from my small internet research is bellow and it is about what coul
 - Security
 - The system complexity & bugs present in the IOT technology
 - Limitations in memory, processing power, bandwidth, battery life, etc.
+
+<br/>
+
+# Things used in this project
+
+
+
+
+ ![NodeMCU ESP8266](/img/ESP8266.jpg)
+
+### **Hardware components**
+- Waveshare NodeMCU-32S ESP32 WiFi + Bluetooth
+
+### **Software apps and online services**
+- [Thony](https://thonny.org/)
+- [MicroPython unicorn online editor](https://micropython.org/unicorn/)
+
+<br/>
+
 
 <br/>
 
