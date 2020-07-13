@@ -223,7 +223,7 @@ test_std5() # two same values expected 0
 ```
 
 
-<br/>
+
 
 # Integration Test - Example
 
