@@ -60,7 +60,12 @@ def test_approx_internalFloat():
     assert approx(3.1934, 3.2, 0.01) == True  # test internal point expected 21
 
 
-test_approx0()
-test_approx_edge1()
-test_approx_internal21()
-test_approx_internalFloat()
+def main():
+    test_approx0()
+    test_approx_edge1()
+    test_approx_internal21()
+    test_approx_internalFloat()
+
+if __name__ == "__main__":
+    main()
+
