@@ -429,7 +429,6 @@ log.log_critical("Test message5")
 log.log_info("Test message6")
 
 ```
-
 ### Execution of script above results into following output on console and to file
 
 ```
@@ -440,6 +439,139 @@ ERROR: Test message4
 CRITICAL: Test message5
 INFO: Test message6
 ```
+
+# Fixtures
+
+# Marks
+
+Additional Marks can be used apply meta data to test functions (but not fixtures), which can then be accessed by other fixtures or plugins etc.
+
+MicroTest provides a few additional marks out of the box:
+- *skip* skips a test unconditionally.
+
+- *skipif* skips a test if the expression passed to it evaluates to True.
+
+- *xfail* indicates that a test is expected to fail, so if the test does fail, the overall suite can still result in a passing status.
+
+- *parametrize* (note the spelling) creates multiple variants of a test with different values as arguments. You’ll learn more about this mark shortly.
+
+```python
+# MicroTest Marks example
+#--------SKIP IF----------------------------
+
+@skipif(sys.platform == 'win32',"does not run on windows")
+def test_skipif1():
+    assert 0                  
+
+#----------XFAIL --------------------------
+
+@xfail
+def test_hello():
+    assert 0, "xfail"
+
+@xfail(False)
+def test_hello2():
+    assert 0, "xfail 2"
+```
+
+# Parametrization: Combining Tests
+
+In these cases, you can parametrize a single test definition, and MicroTest will create variants of the test for you with the parameters you specify.
+
+```python
+# MicroTest Parametrization example
+
+#----------PARAMETRIZED --------------------------
+
+testdata = [(datetime(2001, 12, 12), datetime(2001, 12, 11), timedelta(1)),
+            (datetime(2001, 12, 11), datetime(2001, 12, 12), timedelta(-1)),
+            ]
+
+
+@parametrize(testdata)
+def test_timedistance_v0(a, b, expected):
+    diff = a - b
+    #print("Test: {} - {} = {}".format(a, b, diff))
+    assert diff == expected
+```
+# Approx
+
+Assert that two numbers  are equal to each other within some tolerance.
+
+```python
+DEFAULT_ABSOLUTE_TOLERANCE = 1e-12  # type: Union[float, Decimal]
+DEFAULT_RELATIVE_TOLERANCE = 1e-6  # type: Union[float, Decimal]
+
+""""
+Multiplication Factors	                        Prefix	Symbol
+1E+24	1,000,000,000,000,000,000,000,000	    yotta	Y
+1E+21	1,000,000,000,000,000,000,000	        zetta	Z
+1E+18	1,000,000,000,000,000,000	            exa	E
+1E+15	1,000,000,000,000,000	                peta	P
+1E+12	1,000,000,000,000	                    tera	T
+1E+9	1,000,000,000	                        giga	G
+1E+6	1,000,000	                            mega	M
+1E+3	1,000	                                kilo	k
+1E+2	100	                                    hecto	h
+1E+1	10	                                    deka	da
+1E+0	1	                                    -	    -
+1E-1	0.1	                                    deci	d
+1E-2	0.01	                                centi	c
+1E-3	0.001	                                milli	m
+1E-6	0.000 001	                            micro	µ
+1E-9	0.000 000 001	                        nano	n
+1E-12	0.000 000 000 001	                    pico	p
+1E-15	0.000 000 000 000 001	                femto	f
+1E-18	0.000 000 000 000 000 001	            atto	a
+1E-21	0.000 000 000 000 000 000 001	        zepto	z
+1E-24	0.000 000 000 000 000 000 000 001	    yocto	
+"""
+
+
+
+def approx(actual, expected, abst=None, relt=None):
+
+    def _set_value_default(x, default):
+        return x if x is not None else default
+
+    absolute_tolerance = _set_value_default(abst, DEFAULT_ABSOLUTE_TOLERANCE)
+    relative_tolerance = _set_value_default(relt, DEFAULT_RELATIVE_TOLERANCE) * abs(expected)
+
+    # Return the larger of the relative and absolute tolerances.
+
+    tolval = max(relative_tolerance, absolute_tolerance)
+    return abs(expected - actual) <= tolval
+
+ #  Boundary Values technique
+
+
+def test_approx0():
+    assert approx(0, 0, 0, 0) == True  # test edge 0
+
+
+def test_approx_edge1():
+    assert approx(0, 1, 1, 1) == True   # test edge 1
+
+
+def test_approx_internal21():
+    assert approx(2, 1, 3, 3) == True  # test internal point expected 21
+
+
+def test_approx_internalFloat():
+    assert approx(3.1934, 3.2, 0.01) == True  # test internal point expected 21
+
+
+def main():
+    test_approx0()
+    test_approx_edge1()
+    test_approx_internal21()
+    test_approx_internalFloat()
+
+if __name__ == "__main__":
+    main()
+```
+
+
 # Next steps
 
 In third part of this tutorial I will cover complex testing scenario and untouched related topics
