@@ -286,7 +286,7 @@ Different libraries and frameworks for unit testing on Python:
 - **Django** - allows writing automated testing for modern web development. 
 - **Flask** - provides ample opportunity to test your web application using tests and by processing local context variables.
 
-## Why PyTest ?
+## Why to start your first steps with PyTest ?
 - More pythonic way of writing your tests.
 - Supports simple or complex code to test API, databases, and UIs.
 - Has a Simple python syntax.
@@ -295,6 +295,151 @@ Different libraries and frameworks for unit testing on Python:
 - Ability to run selected specific subset of tests.
 
 
+```python
+# test_with_pytest
+
+def test_always_passes():
+    assert True
+
+def test_always_fails():
+    assert False
+```
+Execution result in following output:
+
+```
+pytest test_demo1.py
+================== test session starts ======================
+platform win32 -- Python 3.8.1, pytest-5.4.3, py-1.9.0, pluggy-0.13.1
+rootdir: C:\Python\esp_testing_demo\src2
+collected 2 items
+test_demo1.py .F
+					[100%]
+
+=================== FAILURES ===================
+____________________ test_always_fails ____________________
+    def test_always_fails():
+>       assert False
+E       assert False
+
+test_demo1.py:7: AssertionError
+==================== short test summary info ====================
+FAILED test_demo1.py::test_always_fails - assert False
+==================== 1 failed, 1 passed in 0.12s ====================
+```
+
+Another example of Fixtures application:
+
+```python
+# pytest fixtures demo
+import pytest
+
+@pytest.fixture
+def input_value():
+   input = 39
+   return input
+
+
+def test_divisible_by_3(input_value):
+   assert input_value % 3 == 0
+
+def test_divisible_by_6(input_value):
+   assert input_value % 6 == 0
+```
+
+<br/>
+
+# MicroTest framework
+
+My motivation do developed MicroTest framework is current challenges for development and testing on Microcontrollers like:
+
+- Standard MicroPython testing library ?
+- Manual testing for Complex projects ?
+- Automated testing ?
+- Effective Mockups ?
+
+### Basic sample shows how to run your first tests with MicroTest framework. 
+
+- **Test suite:** for us  is a collection of test cases e.q. python functions. It is used to aggregate tests that must be run together. for example in (test_wallet.py) imported in example
+
+- **Test runner:** is class (MicroTestRunner) which organizes the execution of tests and provides the result to the user. Usage of runner is described in main() function
+
+```python
+# MicroTest demo
+from microtest.microtestrunner import MicroTestRunner
+
+# uncomment for loading more test suites into demo 
+import test_wallet
+#import test_fibonacci
+#import test_fixture1
+
+def main():
+    runner = MicroTestRunner(globals())
+    runner.exec()
+
+if __name__ == "__main__":
+    main()
+```
+
+
+
+### Execution will create following output on console and to file
+
+```
+======================= Test suite Start: test_wallet ===============================
+Loaded file: c:\Python\esp_testing_demo\src2\test_wallet.py
+Tests collected: 5
+
+PASSED: test_default_initial_amount
+PASSED: test_setting_initial_amount
+PASSED: test_wallet_add_cash
+PASSED: test_wallet_spend_cash
+ERROR: test_wallet_spend_cash_raises_exception_on_insufficient_amount raised <class 'wallet.InsufficientAmount'> (None): Not enough available to spend 100
+
+======================= Summary of: test_wallet ===============================
+
+Total Passed 4
+Total Skipped 0
+Total Failed 0
+Total Errors 1
+Expected Failures 0
+Unexpected Passes 0
+
+```
+
+
+## MicroTest - Log
+
+MicrotTest provides built in logger for simplified output management, basic options are writing messages into file or print on console.
+
+
+```python
+# MicroLogger example
+
+from microtest.micrologger import MicroLogger
+from microtest.basiclogger import LogLevels
+
+log = MicroLogger()
+
+log.basicConfig(vlevel=LogLevels.DEBUG)
+log.log_debug("Test message: {}({})", 100, "foobar")
+log.log_info("Test message2: {}({})", 200, "foobar")
+log.log_warning("Test message3: {}({})",300,"foobar")
+log.log_error("Test message4")
+log.log_critical("Test message5")
+log.log_info("Test message6")
+
+```
+
+### Execution of script above results into following output on console and to file
+
+```
+DEBUG: Test message: 100(foobar)
+INFO: Test message2: 200(foobar)
+WARNING: Test message3: 300(foobar)
+ERROR: Test message4
+CRITICAL: Test message5
+INFO: Test message6
+```
 # Next steps
 
 In third part of this tutorial I will cover complex testing scenario and untouched related topics
@@ -302,6 +447,7 @@ In third part of this tutorial I will cover complex testing scenario and untouch
 # Resources
 
 Further reading and useful links:
+- [RealPython](https://realpython.com/pytest-python-testing/)
 - [Guru99](https://www.guru99.com/software-testing.html)
 - [Software Testing Help](https://www.softwaretestinghelp.com/)
 - [W3Schools Python Tutorial](https://www.w3schools.com/python/default.asp)

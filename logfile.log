@@ -1,24 +1,8 @@
-
-======================= Test suite Start: test_fixture1 ===============================
-Loaded file: c:\Python\esp_testing_demo\src2\test_fixture1.py
-Tests collected: 13
-
-PASSED: test_divisible_by_3
-FAILED: test_divisible_by_6 raised <class 'AssertionError'> (Assertion failed.)
-SKIPPED: test_skipif1 raised (does not run on windows)
-PASSED: test_hello
-PASSED: test_hello6
-PASSED: test_hello7
-PASSED: test_hello2
-PASSED: test_format_data_for_display
-PASSED: test_format_data_for_excel
-PASSED: test_timedistance_v0
-
-======================= Summary of: test_fixture1 ===============================
-
-Total Passed 8
-Total Skipped 1
-Total Failed 1
-Total Errors 0
-Expected Failures 3
-Unexpected Passes 0
+DEBUG: Test message: 100(foobar)
+INFO: Test message2: 200(foobar)
+WARNING: Test message3: 300(foobar)
+ERROR: Test message4
+CRITICAL: Test message5
+INFO: Test message6
+ERROR: Function 1/0 raised <class 'ZeroDivisionError'> (Second argument to a division or modulo operation was zero.): division by zero
+ERROR: Function assert 1==2 raised <class 'AssertionError'> (Assertion failed.): 
