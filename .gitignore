@@ -4,3 +4,4 @@
 .gitignore
 __pycache__
 __bak__
+.pytest_cache

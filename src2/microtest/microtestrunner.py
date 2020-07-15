@@ -17,6 +17,77 @@ from microtest.micrologger import MicroLogger
 from microtest.basiclogger import LogLevels
 
 
+# ----------------------------------------------
+# Micro Test Fixtures
+# ----------------------------------------------
+
+_fixtures_dictionary = {}
+
+
+# decorator fixture
+def fixture(func):
+    name = func.__name__
+    _fixtures_dictionary[name] = func()
+
+
+class SkipTestException(Exception):
+    pass
+
+
+class XFailTestException(Exception):
+    pass
+
+
+def skip(msg=None):
+    def inner1(func):
+        def wrapper(*args, **kwargs):
+        # We just replace original fun with _inner
+            raise SkipTestException(msg)
+        return wrapper
+    return inner1
+
+
+def skipif(cond=True, msg=None):
+    def inner1(func):
+        def wrapper(*args, **kwargs):
+        # We just replace original fun with _inner
+            if cond:
+                raise SkipTestException(msg)
+        return wrapper
+    return inner1
+
+
+def xfail(cond=False, msg=None):
+    def inner1(func):
+        def wrapper(*args, **kwargs):
+        # We just replace original fun with _inner
+            if cond:
+                raise XFailTestException(msg)
+        return wrapper
+    return inner1
+
+
+def parametrize(decorator_args):
+
+    # added arguments inside the inner1,
+    # if function takes any arguments,
+    # can be added like this.
+    def inner1(func):
+
+        def wrapper(*args, **kwargs):
+
+            for values in decorator_args:
+                func(*values)
+
+        return wrapper
+    return inner1
+
+
+# ----------------------------------------------
+# Micro Test Runner
+# ----------------------------------------------
+
+
 class MicroTestRunner:
 
     log = None
@@ -56,18 +127,8 @@ class MicroTestRunner:
                             ex.__doc__
                             )
 
-    def _get_tests(self, module):
-
-        tests = set()
-
-        # retrive name obj of functions
-        for name, fn in getmembers(module, isfunction):
-            if name.startswith('test_'):  # function starts with test_
-                lineno = getsourcelines(fn)[1]  # return function starting line
-                tests.add((lineno, name))   # create touple list
-
-        tests = sorted(tests)
-        return tests
+    def _log_skipped(self, fname, ex):
+        self.log.log_skipped("{} raised ({})", fname, ex)
 
     def _log_start_tests_block(self, mname, mfile, count):
         self.log.log_line(
@@ -96,6 +157,37 @@ class MicroTestRunner:
         self.count_expected_failures = 0
         self.count_unexpected_passes = 0
 
+    # Iterate within tests
+
+    def _get_tests(self, module):
+
+        tests = set()
+
+        # retrive name obj of functions
+        for name, fn in getmembers(module, isfunction):
+            if name.startswith('test_'):  # function starts with test_
+                lineno = getsourcelines(fn)[1]  # return function starting line
+                tests.add((lineno, name))   # create touple list
+
+        tests = sorted(tests)
+        return tests
+
+    # Iterate within values of fixtures
+    def _get_test_fixture(self, args):
+
+        retval = []
+        if args is None or len(args) < 1:
+            return retval
+
+        for name in args:
+            val = _fixtures_dictionary.get(name, None)
+            if val is None:
+                retval.append(name)
+            else:
+                retval.append(val)
+
+        return retval
+
     # Iterate within test suite as it is a collection of test cases. It is used to aggregate tests that must be run together.
 
     def run_test_suite(self, module, log_module_file_name=True, log_module_name=True):
@@ -121,7 +213,8 @@ class MicroTestRunner:
                 if args is None or len(args) < 1:
                     fn()
                 else:
-                    fn(args)
+                    retval = self._get_test_fixture(args)
+                    fn(*retval)
 
                 if log_module_name:
                     self.log.log_passed("{}:{}".format(module_name, name))
@@ -137,6 +230,16 @@ class MicroTestRunner:
                 else:
                     self._log_assertion_exception(name, err)
                 self.count_failed += 1
+
+            except SkipTestException as err:
+                if log_module_name:
+                    self._log_skipped("{}:{}".format(module_name, name), err)
+                else:
+                    self._log_skipped(name, err)
+                self.count_skipped += 1
+
+            except XFailTestException as e:
+                self.count_expected_failures += 1
 
             except Exception as e:
                 self._log_exception(name, e)
