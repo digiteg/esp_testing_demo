@@ -14,8 +14,6 @@ def input_value2():
    return input
 
 
-
-
 def test_divisible_by_3(input_value,input_value2 ):
    assert input_value % 3 == 0
    assert input_value2 % 3 == 0

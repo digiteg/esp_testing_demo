@@ -442,6 +442,82 @@ INFO: Test message6
 
 # Fixtures
 
+MicrotTest provides built in support for Fixtures - for handling test dependencies, state, and reusable functionality
+
+- Fixtures are a way of providing data, test doubles, or state setup to your tests. 
+- Fixtures are functions that can return a wide range of values. 
+- Each test that depends on a fixture must explicitly accept that fixture as an argument.
+
+
+```python
+# Fixture example
+
+from microtest.microtestrunner import fixture, skip, skipif, xfail, parametrize
+
+@fixture
+def input_value():
+   input = 39
+   return input
+
+@fixture
+def input_value2():
+   input = 39
+   return input
+
+def test_divisible_by_3(input_value,input_value2 ):
+   assert input_value % 3 == 0
+   assert input_value2 % 3 == 0
+
+def test_divisible_by_6(input_value):
+   assert input_value % 6 == 0
+```
+Another example of using Fixtures for more complex data
+
+```python
+# Fixture example 2
+
+@fixture
+def people_data():
+    return [
+        {
+            "given_name": "Alfonsa",
+            "family_name": "Ruiz",
+            "title": "Senior Software Engineer",
+        },
+        {
+            "given_name": "Sayid",
+            "family_name": "Khan",
+            "title": "Project Manager",
+        }
+    ]
+
+# test data format
+def test_format_data_for_display(people_data):
+    assert people_data == valid_data()
+```
+
+### Execution of scripts above results into following output on console and to file
+
+```
+======================= Test suite Start: test_fixture1 ===============================
+Loaded file: c:\Python\esp_testing_demo\src2\test_fixture1.py
+Tests collected: 4
+
+PASSED: test_divisible_by_3
+FAILED: test_divisible_by_6 raised <class 'AssertionError'> (Assertion failed.)
+PASSED: test_format_data_for_display
+PASSED: test_format_data_for_excel
+
+======================= Summary of: test_fixture1 ===============================
+
+Total Passed 3
+Total Skipped 0
+Total Failed 1
+Total Errors 0
+Expected Failures 0
+Unexpected Passes 0
+```
+
 # Marks
 
 Additional Marks can be used apply meta data to test functions (but not fixtures), which can then be accessed by other fixtures or plugins etc.
