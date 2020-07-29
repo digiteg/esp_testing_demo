@@ -12,6 +12,8 @@
 from microtest.basiclogger import _BasicLogger, LogLevels
 
 # Text Logger prints message
+
+
 class TextLogger(_BasicLogger):
     def write(self, message):
         print(message)
@@ -23,17 +25,21 @@ class TextLogger(_BasicLogger):
             print("{}: ".format(blev), end="")
 
 # File Logger stores message into file
+
+
 class FileLogger(_BasicLogger):
 
-    _file = None
+    file = None
+    _is_closed = True
 
     def __init__(self, name, logfile, vlevel=LogLevels.NOTSET, wlevel_name=True, vwrite_name=True):
         super().__init__(name, vlevel, wlevel_name, vwrite_name)
         f = open(logfile, 'w')
         self._file = f
+        self._is_closed = False
 
     def write_end_line(self):
-        if(self._file != None and not self._file.closed):
+        if(self.is_open):
             self._file.write("\n")
 
     def write_level_name(self, blev, isname=False):
@@ -43,17 +49,19 @@ class FileLogger(_BasicLogger):
             self._file.write("{}: ".format(blev))
 
     def write(self, message):
-        if(self._file != None and not self._file.closed):
+        if(self.is_open):
             self._file.write(message)
 
     def flush(self):
-        if(self._file != None and not self._file.closed):
+        if(self.is_open):
             self._file.flush()
 
     def close(self):
         self.flush()
-        if(self._file != None and not self._file.closed):
+        if(self.is_open):
             self._file.close()
+        self._file = None
+        self._is_closed = True
 
     @property
     def logfile(self):
@@ -63,6 +71,19 @@ class FileLogger(_BasicLogger):
     def logfile(self, infile):
         self._file = infile
 
+    @property
+    def is_open(self):
+
+        if (self._file is None or self._is_closed):
+            return False
+
+        isclosed = getattr(self._file, "closed", False)
+
+        if isclosed:
+           self._is_closed = True
+           return False
+        
+        return True
+
     def __del__(self):
         self.close()
-

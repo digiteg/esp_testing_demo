@@ -10,7 +10,7 @@
 # -------------------------------------------------------------------------------
 
 import sys
-import traceback
+
 from inspect import getmembers, isfunction, getargspec, getsourcelines
 
 from microtest.micrologger import MicroLogger
@@ -39,9 +39,9 @@ class XFailTestException(Exception):
 
 
 def skip(msg=None):
-    def inner1(func):
-        def wrapper(*args, **kwargs):
-        # We just replace original fun with _inner
+    def inner1(func=None):
+        def wrapper():
+            # We just replace original fun with _inner
             raise SkipTestException(msg)
         return wrapper
     return inner1
@@ -49,19 +49,25 @@ def skip(msg=None):
 
 def skipif(cond=True, msg=None):
     def inner1(func):
-        def wrapper(*args, **kwargs):
-        # We just replace original fun with _inner
+        def wrapper():
+            # We just replace original fun with _inner
             if cond:
                 raise SkipTestException(msg)
+            func()
         return wrapper
     return inner1
 
 
 def xfail(cond=False, msg=None):
     def inner1(func):
-        def wrapper(*args, **kwargs):
-        # We just replace original fun with _inner
-            if cond:
+        def wrapper():
+            # We just replace original fun with _inner
+            try:
+                func()
+            except Exception as e:
+                if cond:
+                    raise e
+            if cond == False:
                 raise XFailTestException(msg)
         return wrapper
     return inner1
@@ -106,29 +112,34 @@ class MicroTestRunner:
         self.log.basicConfig(vlevel=LogLevels.INFO)
         self.setup(modglobals)
 
-#    def _extract_function_name(self):
-#        tb = sys.exc_info()[-1]
-#        stk = traceback.extract_tb(tb, 1)
-#        fname = stk[0][3]
-#        return fname
+    def _get_exception_args(self, ex):
+        args = getattr(ex, "args", None)
+        if (args is None or len(args) < 1):
+            return "()"
+        data = ""
+        for txt in args:
+            data = data + str(txt)
+            if len(args) > 1:
+                data = data + " , "
+        return data
 
     def _log_exception(self, fname, ex):
-        self.log.log_error("{} raised {} ({}): {}",
+        self.log.log_error("{} raised {}: {}",
                            fname,  # this is optional
                            ex.__class__,
-                           ex.__doc__,
-                           ex
+                           self._get_exception_args(ex)
                            )
 
     def _log_assertion_exception(self, fname, ex):
-        self.log.log_failed("{} raised {} ({})",
+        self.log.log_failed("{} raised {}: {}",
                             fname,  # this is optional
                             ex.__class__,
-                            ex.__doc__
+                            self._get_exception_args(ex)
                             )
 
     def _log_skipped(self, fname, ex):
-        self.log.log_skipped("{} raised ({})", fname, ex)
+        self.log.log_skipped("{} raised ({})", fname,
+                             self._get_exception_args(ex))
 
     def _log_start_tests_block(self, mname, mfile, count):
         self.log.log_line(

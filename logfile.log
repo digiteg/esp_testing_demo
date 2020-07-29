@@ -1,18 +1,65 @@
 
-======================= Test suite Start: test_fixture1 ===============================
-Loaded file: c:\Python\esp_testing_demo\src2\test_fixture1.py
-Tests collected: 4
+======================= Test suite Start: test_wallet ===============================
+Loaded file: c:\Python\esp_testing_demo\src2\test_wallet.py
+Tests collected: 5
 
-PASSED: test_divisible_by_3
-FAILED: test_divisible_by_6 raised <class 'AssertionError'> (Assertion failed.)
-PASSED: test_format_data_for_display
-PASSED: test_format_data_for_excel
+PASSED: test_default_initial_amount
+PASSED: test_setting_initial_amount
+PASSED: test_wallet_add_cash
+PASSED: test_wallet_spend_cash
+ERROR: test_wallet_spend_cash_raises_exception_on_insufficient_amount raised <class 'wallet.InsufficientAmount'>: Not enough available to spend 100
 
-======================= Summary of: test_fixture1 ===============================
+======================= Summary of: test_wallet ===============================
 
-Total Passed 3
+Total Passed 4
+Total Skipped 0
+Total Failed 0
+Total Errors 1
+Expected Failures 0
+Unexpected Passes 0
+
+======================= Test suite Start: test_fibonacci ===============================
+Loaded file: c:\Python\esp_testing_demo\src2\test_fibonacci.py
+Tests collected: 6
+
+PASSED: test_fib_edge0
+PASSED: test_fib_edge1
+PASSED: test_fib_internal21
+FAILED: test_fib_invalid_minus1 raised <class 'AssertionError'>: invalid value -1
+PASSED: test_fib_invalid_none
+PASSED: test_fib_invalid_string
+
+======================= Summary of: test_fibonacci ===============================
+
+Total Passed 5
 Total Skipped 0
 Total Failed 1
 Total Errors 0
 Expected Failures 0
+Unexpected Passes 0
+
+======================= Test suite Start: test_fixture1 ===============================
+Loaded file: c:\Python\esp_testing_demo\src2\test_fixture1.py
+Tests collected: 13
+
+PASSED: test_divisible_by_3
+FAILED: test_divisible_by_6 raised <class 'AssertionError'>: ()
+PASSED: test_hello7
+SKIPPED: test_hello raised (hop hop)
+SKIPPED: test_skipif1 raised (does not run on windows)
+PASSED: test_format_data_for_display
+PASSED: test_hello6
+FAILED: test_hello3 raised <class 'AssertionError'>: ()
+FAILED: test_hello4 raised <class 'AssertionError'>: ()
+FAILED: test_hello5 raised <class 'AssertionError'>: ()
+PASSED: test_format_data_for_excel
+PASSED: test_timedistance_v0
+
+======================= Summary of: test_fixture1 ===============================
+
+Total Passed 6
+Total Skipped 2
+Total Failed 4
+Total Errors 0
+Expected Failures 1
 Unexpected Passes 0

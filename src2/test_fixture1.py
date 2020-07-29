@@ -77,7 +77,7 @@ def test_skipif1():
 #----------XFAIL --------------------------
 
 
-@xfail
+@skip("hop hop")
 def test_hello():
     assert 0, "xfail"
 
@@ -102,7 +102,7 @@ def test_hello5():
 def test_hello6():
     assert 0, "reason"
 
-@xfail
+@skip
 def test_hello7():
     x = []
     x[1] = 1

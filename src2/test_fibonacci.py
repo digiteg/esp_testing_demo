@@ -12,7 +12,7 @@ def test_fib_internal21():
 
     #  Error Guessing technique
 def test_fib_invalid_minus1():
-    assert fib(-1) == 0, "invalid value -1"  # test invalid value
+    assert fib(-1) == 1, "invalid value -1"  # test invalid value
 
 def test_fib_invalid_none():
     assert fib(None) == 0, "invalid value None"  # test null value
